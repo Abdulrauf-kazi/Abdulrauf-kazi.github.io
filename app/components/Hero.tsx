@@ -11,15 +11,15 @@ export default function Hero() {
             <div className="absolute inset-0 z-0">
                 <MeshGradient
                     className="w-full h-full"
-                    colors={["#0a0a0a", "#111111", "#1a1a1a", "#0d0d0d"]}
-                    speed={0.4}
-                    distortion={0.6}
-                    swirl={0.15}
+                    colors={["#000000", "#555555", "#aaaaaa", "#ffffff"]}
+                    speed={0.3}
+                    distortion={1.0}
+                    swirl={0.2}
                 />
             </div>
 
-            {/* Subtle dark overlay so text stays readable */}
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            {/* Overlay — darkens the gradient enough for readable white text */}
+            <div className="absolute inset-0 bg-black/55 z-10" />
 
             {/* Content */}
             <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center">
