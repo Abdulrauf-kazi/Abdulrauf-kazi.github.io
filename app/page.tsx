@@ -1,4 +1,3 @@
-import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
 import Experience from "./components/Experience";
@@ -9,7 +8,6 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <main className="bg-[#0a0a0a] text-white overflow-x-hidden">
-      <Navbar />
       <Hero />
       <Services />
       <Clients />

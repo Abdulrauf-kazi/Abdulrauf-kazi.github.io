@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Your Name — Designer & Creative Director",
-  description:
-    "Portfolio of a visual designer with seven years of actively producing cool shit. Currently available for work.",
+  title: "Abdulrauf Kazi — Designer",
+  description: "Portfolio of Abdulrauf Kazi. Passionate about learning new things.",
 };
 
 export default function RootLayout({
@@ -15,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-[#0a0a0a] text-white">
+        <Navbar />
         {children}
       </body>
     </html>
