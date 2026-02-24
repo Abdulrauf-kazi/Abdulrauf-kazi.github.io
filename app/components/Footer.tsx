@@ -11,7 +11,7 @@ const socials = [
 
 export default function Footer() {
     return (
-        <footer id="contact" className="py-24 px-6 md:px-12 bg-[#0a0a0a] border-t border-[#222]">
+        <footer id="contact" className="py-24 px-6 md:px-12 border-t border-[#333]">
             <div className="max-w-6xl mx-auto">
 
                 {/* Headline */}
@@ -31,11 +31,11 @@ export default function Footer() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.15, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                    href="mailto:hello@abdulraufkazi.com"
+                    href="mailto:kaziabdulrauf15@gmail.com"
                     className="inline-block mt-6 text-xl text-[#888] hover:text-white
                      transition-colors duration-300"
                 >
-                    hello@abdulraufkazi.com
+                    kaziabdulrauf15@gmail.com
                 </motion.a>
 
                 {/* Social links */}

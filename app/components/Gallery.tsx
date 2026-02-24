@@ -51,7 +51,7 @@ export default function Gallery() {
     }, []);
 
     return (
-        <section id="gallery" className="bg-[#0a0a0a]">
+        <section id="gallery">
             <ZoomParallax images={images} />
         </section>
     );

@@ -47,12 +47,15 @@ export function ZoomParallax({ images }: ZoomParallaxProps) {
                 ${index === 6 ? '[&>div]:!top-[22.5vh] [&>div]:!left-[25vw] [&>div]:!h-[15vh] [&>div]:!w-[15vw]' : ''}
               `}
                         >
-                            <div className="relative h-[25vh] w-[25vw]">
+                            <div className="relative h-[25vh] w-[25vw] overflow-hidden">
                                 <img
                                     src={src || '/placeholder.svg'}
                                     alt={alt || `Parallax image ${index + 1}`}
                                     className="h-full w-full object-cover"
+                                    style={{ filter: "grayscale(60%) brightness(0.5)" }}
                                 />
+                                {/* Dark overlay to match site palette */}
+                                <div className="absolute inset-0 bg-black/30" />
                             </div>
                         </motion.div>
                     );

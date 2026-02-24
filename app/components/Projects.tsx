@@ -8,34 +8,34 @@ const projects = [
         title: "Project One",
         description: "A brief description of this project and what it does.",
         bg: "#111",
-        accent: "#1a1a2e",
+        accent: "#1a1a1a",
     },
     {
         id: 2,
         title: "Project Two",
         description: "A brief description of this project and what it does.",
-        bg: "#111",
-        accent: "#1a2a1a",
+        bg: "#0f0f0f",
+        accent: "#161616",
     },
     {
         id: 3,
         title: "Project Three",
         description: "A brief description of this project and what it does.",
         bg: "#111",
-        accent: "#2a1a1a",
+        accent: "#0d0d0d",
     },
     {
         id: 4,
         title: "Project Four",
         description: "A brief description of this project and what it does.",
-        bg: "#111",
+        bg: "#0e0e0e",
         accent: "#1a1a1a",
     },
 ];
 
 export default function Projects() {
     return (
-        <section id="project" className="min-h-screen py-24 px-6 md:px-12 bg-[#0a0a0a]">
+        <section id="project" className="min-h-screen py-24 px-6 md:px-12">
             <div className="max-w-6xl mx-auto">
 
                 {/* Header */}
