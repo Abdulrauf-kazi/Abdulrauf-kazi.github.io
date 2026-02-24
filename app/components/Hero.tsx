@@ -26,16 +26,6 @@ export default function Hero() {
                 </motion.p>
             </div>
 
-            {/* Bottom-left N badge */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.0, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute bottom-8 left-6 z-10 w-10 h-10 rounded-full border border-[#333]
-                   flex items-center justify-center"
-            >
-                <span className="text-white text-xs font-bold leading-none">N</span>
-            </motion.div>
         </section>
     );
 }
