@@ -1,11 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
 
+/* ── Design tokens ──────────────────────────────────────────────────────── */
 :root {
   --background: #0a0a0a;
   --foreground: #ffffff;
   --secondary: #888888;
   --accent: #ff3366;
+
+  /* shadcn-compatible tokens */
+  --card: oklch(0.1 0 0 / 0.1);
+  --border: oklch(1 0 0 / 0.15);
+  --input: oklch(1 0 0 / 0.1);
+  --ring: oklch(1 0 0 / 0.3);
+  --radius: 0.5rem;
 }
 
 @theme inline {
@@ -17,6 +26,7 @@
   --font-sans: 'Inter', sans-serif;
 }
 
+/* ── Base ───────────────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
@@ -32,9 +42,9 @@ body {
   color: var(--background);
 }
 
-/* Custom scrollbar */
+/* ── Custom scrollbar ───────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -42,10 +52,10 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 3px;
+  background: #222;
+  border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: #444;
 }

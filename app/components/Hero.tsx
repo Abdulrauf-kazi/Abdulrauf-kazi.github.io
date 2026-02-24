@@ -1,44 +1,27 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
+import { MeshGradient } from "@paper-design/shaders-react";
 
 export default function Hero() {
-    const videoRef = useRef<HTMLVideoElement>(null);
-
     return (
         <section className="relative h-screen overflow-hidden bg-[#0a0a0a]">
 
-            {/* ── Background: video (swap src when you have a file) ───────────── */}
-            {/* Uncomment and set src="/your-video.mp4" when ready */}
-            {/*
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-40 scale-100"
-        style={{ animation: "slowZoom 20s ease-in-out infinite alternate" }}
-      >
-        <source src="/hero.mp4" type="video/mp4" />
-      </video>
-      */}
+            {/* ── Animated mesh gradient background ───────────────────────────── */}
+            <div className="absolute inset-0 z-0">
+                <MeshGradient
+                    className="w-full h-full"
+                    colors={["#0a0a0a", "#111111", "#1a1a1a", "#0d0d0d"]}
+                    speed={0.4}
+                    distortion={0.6}
+                    swirl={0.15}
+                />
+            </div>
 
-            {/* Animated gradient fallback (replace with video above when available) */}
-            <div
-                className="absolute inset-0 z-0"
-                style={{
-                    background:
-                        "radial-gradient(ellipse 120% 80% at 50% 60%, #111 0%, #0a0a0a 60%, #0a0a0a 100%)",
-                    animation: "gradientPulse 8s ease-in-out infinite alternate",
-                }}
-            />
+            {/* Subtle dark overlay so text stays readable */}
+            <div className="absolute inset-0 bg-black/40 z-10" />
 
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black/60 z-10" />
-
-            {/* ── Main content ─────────────────────────────────────────────────── */}
+            {/* Content */}
             <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 text-center">
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
@@ -59,27 +42,16 @@ export default function Hero() {
                 </motion.p>
             </div>
 
-            {/* ── Bottom-left badge ─────────────────────────────────────────────── */}
+            {/* Bottom-left N badge */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.0, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute bottom-8 left-6 z-20 flex items-center justify-center w-10 h-10 rounded-full border border-[#333]"
+                className="absolute bottom-8 left-6 z-20 w-10 h-10 rounded-full border border-[#333]
+                   flex items-center justify-center"
             >
                 <span className="text-white text-xs font-bold leading-none">N</span>
             </motion.div>
-
-            {/* Gradient pulse keyframe */}
-            <style jsx>{`
-        @keyframes gradientPulse {
-          from { opacity: 0.8; }
-          to   { opacity: 1; }
-        }
-        @keyframes slowZoom {
-          from { transform: scale(1); }
-          to   { transform: scale(1.05); }
-        }
-      `}</style>
         </section>
     );
 }
