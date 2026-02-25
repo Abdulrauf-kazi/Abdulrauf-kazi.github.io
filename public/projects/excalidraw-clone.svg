@@ -1,49 +1,57 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
   <defs>
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e1e1e" stroke-width="1"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2a2a2a" stroke-width="1"/>
     </pattern>
-    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0a0a0a;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#111111;stop-opacity:1" />
-    </linearGradient>
   </defs>
 
   <!-- Background -->
-  <rect width="1280" height="720" fill="url(#glow)"/>
-  <!-- Grid -->
-  <rect width="1280" height="720" fill="url(#grid)" opacity="0.6"/>
+  <rect width="1280" height="720" fill="#0d0d0d"/>
+  <rect width="1280" height="720" fill="url(#grid)" opacity="0.8"/>
 
-  <!-- Decorative sketch lines (hand-drawn feel) -->
-  <line x1="80" y1="300" x2="520" y2="300" stroke="#2a2a2a" stroke-width="2" stroke-dasharray="8,6"/>
-  <line x1="80" y1="340" x2="400" y2="340" stroke="#222" stroke-width="2" stroke-dasharray="8,6"/>
-  <line x1="80" y1="380" x2="460" y2="380" stroke="#222" stroke-width="2" stroke-dasharray="8,6"/>
+  <!-- Main sketch canvas rectangle -->
+  <rect x="300" y="160" width="700" height="400" rx="6" fill="#111" stroke="#333" stroke-width="1.5" stroke-dasharray="14,7"/>
 
-  <!-- Sketch rectangle shape -->
-  <rect x="80" y="200" width="360" height="220" rx="4" fill="none" stroke="#2e2e2e" stroke-width="2" stroke-dasharray="12,6"/>
+  <!-- Sketch shape 1 — box -->
+  <rect x="360" y="220" width="200" height="130" rx="4" fill="none" stroke="#555" stroke-width="2" stroke-dasharray="10,5"/>
 
-  <!-- Arrow sketch -->
-  <line x1="480" y1="310" x2="600" y2="310" stroke="#333" stroke-width="2"/>
-  <polygon points="595,304 610,310 595,316" fill="#333"/>
+  <!-- Sketch shape 2 — circle -->
+  <circle cx="720" cy="320" r="80" fill="none" stroke="#444" stroke-width="2" stroke-dasharray="10,5"/>
 
-  <!-- Second sketch rectangle -->
-  <rect x="620" y="220" width="280" height="180" rx="4" fill="none" stroke="#2e2e2e" stroke-width="2" stroke-dasharray="12,6"/>
+  <!-- Arrow between shapes -->
+  <line x1="562" y1="285" x2="638" y2="285" stroke="#555" stroke-width="2"/>
+  <polygon points="633,279 645,285 633,291" fill="#555"/>
 
-  <!-- Small circle accent -->
-  <circle cx="780" cy="450" r="40" fill="none" stroke="#252525" stroke-width="2"/>
-  <circle cx="780" cy="450" r="8" fill="#222"/>
+  <!-- Freehand scribble lines -->
+  <path d="M 380 290 Q 400 270 420 290 Q 440 310 460 290 Q 480 270 500 290" fill="none" stroke="#444" stroke-width="2"/>
+  <path d="M 380 320 Q 414 300 448 320" fill="none" stroke="#3a3a3a" stroke-width="1.5"/>
 
-  <!-- Tag -->
-  <rect x="80" y="580" width="160" height="28" rx="14" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
-  <text x="160" y="599" font-family="'SF Mono', 'Fira Code', monospace" font-size="11" fill="#444" text-anchor="middle" letter-spacing="2">CANVAS · REAL-TIME</text>
+  <!-- Text on canvas -->
+  <text x="440" y="380" font-family="'SF Mono', monospace" font-size="12" fill="#555" text-anchor="middle" letter-spacing="1">diagram.excali</text>
 
-  <!-- Project number -->
-  <text x="80" y="100" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="13" fill="#2a2a2a" letter-spacing="4">01</text>
+  <!-- Top label -->
+  <rect x="300" y="125" width="130" height="26" rx="3" fill="#151515" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="365" y="142" font-family="'SF Mono', monospace" font-size="10" fill="#555" text-anchor="middle" letter-spacing="1">canvas.board</text>
 
-  <!-- Project title -->
-  <text x="80" y="160" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="52" font-weight="700" fill="#ffffff" letter-spacing="-2">Excalidraw</text>
-  <text x="80" y="215" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="52" font-weight="700" fill="#333333" letter-spacing="-2">Clone</text>
+  <!-- Toolbar mock (right side) -->
+  <rect x="1010" y="200" width="40" height="220" rx="4" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <circle cx="1030" cy="225" r="8" fill="none" stroke="#444" stroke-width="1.5"/>
+  <rect x="1022" y="245" width="16" height="16" rx="2" fill="none" stroke="#444" stroke-width="1.5"/>
+  <line x1="1022" y1="275" x2="1038" y2="290" stroke="#444" stroke-width="1.5"/>
+  <circle cx="1030" cy="310" r="6" fill="#333"/>
+  <rect x="1022" y="330" width="16" height="8" rx="1" fill="#2a2a2a"/>
+  <rect x="1022" y="345" width="16" height="8" rx="1" fill="#222"/>
+  <rect x="1022" y="360" width="16" height="8" rx="1" fill="#2a2a2a"/>
 
-  <!-- Subtitle on right -->
-  <text x="1200" y="650" font-family="'Inter', sans-serif" font-size="11" fill="#2a2a2a" text-anchor="end" letter-spacing="3">COLLABORATIVE WHITEBOARD</text>
+  <!-- Project name -->
+  <text x="80" y="108" font-family="'Inter', sans-serif" font-size="11" fill="#444" letter-spacing="4">01</text>
+  <text x="80" y="175" font-family="'Inter', sans-serif" font-size="58" font-weight="700" fill="#ffffff" letter-spacing="-2">Excalidraw</text>
+  <text x="80" y="232" font-family="'Inter', sans-serif" font-size="58" font-weight="700" fill="#3a3a3a" letter-spacing="-2">Clone</text>
+
+  <!-- Tag pill -->
+  <rect x="80" y="618" width="176" height="28" rx="14" fill="#151515" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="168" y="637" font-family="'SF Mono', monospace" font-size="11" fill="#555" text-anchor="middle" letter-spacing="2">CANVAS · REAL-TIME</text>
+
+  <!-- Bottom right label -->
+  <text x="1200" y="675" font-family="'Inter', sans-serif" font-size="10" fill="#2a2a2a" text-anchor="end" letter-spacing="3">COLLABORATIVE WHITEBOARD</text>
 </svg>

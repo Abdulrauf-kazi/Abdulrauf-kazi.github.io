@@ -1,68 +1,58 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#080808;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0f0f0f;stop-opacity:1" />
-    </linearGradient>
-    <radialGradient id="glow-center" cx="70%" cy="50%" r="40%">
-      <stop offset="0%" style="stop-color:#1a1a2e;stop-opacity:0.6" />
-      <stop offset="100%" style="stop-color:#080808;stop-opacity:0" />
+    <radialGradient id="glow" cx="65%" cy="50%" r="35%">
+      <stop offset="0%" style="stop-color:#161625;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a0a0a;stop-opacity:1" />
     </radialGradient>
   </defs>
 
-  <!-- Background -->
-  <rect width="1280" height="720" fill="url(#bg)"/>
-  <rect width="1280" height="720" fill="url(#glow-center)"/>
+  <rect width="1280" height="720" fill="url(#glow)"/>
 
-  <!-- Connection nodes — neural/routing network visual -->
-  <!-- Central node -->
-  <circle cx="760" cy="360" r="16" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="2"/>
+  <!-- ── Node graph ── -->
+  <!-- Center hub -->
+  <circle cx="780" cy="360" r="20" fill="#1a1a2a" stroke="#444" stroke-width="2"/>
+  <circle cx="780" cy="360" r="8" fill="#333"/>
 
-  <!-- Surrounding nodes -->
-  <circle cx="900" cy="260" r="10" fill="#141414" stroke="#222" stroke-width="1.5"/>
-  <circle cx="940" cy="380" r="10" fill="#141414" stroke="#222" stroke-width="1.5"/>
-  <circle cx="880" cy="480" r="10" fill="#141414" stroke="#222" stroke-width="1.5"/>
-  <circle cx="620" cy="260" r="10" fill="#141414" stroke="#222" stroke-width="1.5"/>
-  <circle cx="600" cy="380" r="10" fill="#141414" stroke="#222" stroke-width="1.5"/>
-  <circle cx="650" cy="480" r="10" fill="#141414" stroke="#222" stroke-width="1.5"/>
+  <!-- Spoke nodes -->
+  <circle cx="920" cy="260" r="13" fill="#141420" stroke="#383838" stroke-width="1.5"/>
+  <circle cx="960" cy="390" r="13" fill="#141420" stroke="#383838" stroke-width="1.5"/>
+  <circle cx="880" cy="490" r="13" fill="#141420" stroke="#383838" stroke-width="1.5"/>
+  <circle cx="630" cy="255" r="13" fill="#141420" stroke="#383838" stroke-width="1.5"/>
+  <circle cx="600" cy="385" r="13" fill="#141420" stroke="#383838" stroke-width="1.5"/>
+  <circle cx="660" cy="490" r="13" fill="#141420" stroke="#383838" stroke-width="1.5"/>
 
-  <!-- Lines connecting nodes -->
-  <line x1="760" y1="360" x2="900" y2="260" stroke="#1e1e1e" stroke-width="1.5"/>
-  <line x1="760" y1="360" x2="940" y2="380" stroke="#1e1e1e" stroke-width="1.5"/>
-  <line x1="760" y1="360" x2="880" y2="480" stroke="#1e1e1e" stroke-width="1.5"/>
-  <line x1="760" y1="360" x2="620" y2="260" stroke="#1e1e1e" stroke-width="1.5"/>
-  <line x1="760" y1="360" x2="600" y2="380" stroke="#1e1e1e" stroke-width="1.5"/>
-  <line x1="760" y1="360" x2="650" y2="480" stroke="#1e1e1e" stroke-width="1.5"/>
+  <!-- Lines hub → spokes -->
+  <line x1="780" y1="360" x2="920" y2="260" stroke="#2e2e44" stroke-width="1.5"/>
+  <line x1="780" y1="360" x2="960" y2="390" stroke="#2e2e44" stroke-width="1.5"/>
+  <line x1="780" y1="360" x2="880" y2="490" stroke="#2e2e44" stroke-width="1.5"/>
+  <line x1="780" y1="360" x2="630" y2="255" stroke="#2e2e44" stroke-width="1.5"/>
+  <line x1="780" y1="360" x2="600" y2="385" stroke="#2e2e44" stroke-width="1.5"/>
+  <line x1="780" y1="360" x2="660" y2="490" stroke="#2e2e44" stroke-width="1.5"/>
 
-  <!-- Outer nodes -->
-  <circle cx="1020" cy="200" r="6" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-  <circle cx="1060" cy="380" r="6" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-  <circle cx="980" cy="540" r="6" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-  <line x1="900" y1="260" x2="1020" y2="200" stroke="#191919" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="940" y1="380" x2="1060" y2="380" stroke="#191919" stroke-width="1" stroke-dasharray="4,4"/>
-  <line x1="880" y1="480" x2="980" y2="540" stroke="#191919" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- Outer model nodes -->
+  <circle cx="1060" cy="210" r="8" fill="#111" stroke="#333" stroke-width="1"/>
+  <circle cx="1090" cy="390" r="8" fill="#111" stroke="#333" stroke-width="1"/>
+  <circle cx="1010" cy="560" r="8" fill="#111" stroke="#333" stroke-width="1"/>
+  <line x1="920" y1="260" x2="1060" y2="210" stroke="#252535" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="960" y1="390" x2="1090" y2="390" stroke="#252535" stroke-width="1" stroke-dasharray="5,5"/>
+  <line x1="880" y1="490" x2="1010" y2="560" stroke="#252535" stroke-width="1" stroke-dasharray="5,5"/>
 
   <!-- Model labels -->
-  <rect x="1030" y="188" width="80" height="22" rx="3" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-  <text x="1070" y="203" font-family="'SF Mono', monospace" font-size="9" fill="#333" text-anchor="middle" letter-spacing="1">GPT-4o</text>
-
-  <rect x="1070" y="368" width="80" height="22" rx="3" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-  <text x="1110" y="383" font-family="'SF Mono', monospace" font-size="9" fill="#333" text-anchor="middle" letter-spacing="1">Claude</text>
-
-  <rect x="990" y="528" width="80" height="22" rx="3" fill="#111" stroke="#1e1e1e" stroke-width="1"/>
-  <text x="1030" y="543" font-family="'SF Mono', monospace" font-size="9" fill="#333" text-anchor="middle" letter-spacing="1">Gemini</text>
-
-  <!-- Tag -->
-  <rect x="80" y="580" width="148" height="28" rx="14" fill="#0e0e0e" stroke="#1e1e1e" stroke-width="1"/>
-  <text x="154" y="599" font-family="'SF Mono', monospace" font-size="11" fill="#333" text-anchor="middle" letter-spacing="2">AI · API GATEWAY</text>
-
-  <!-- Project number -->
-  <text x="80" y="100" font-family="'Inter', sans-serif" font-size="13" fill="#222" letter-spacing="4">02</text>
+  <rect x="1070" y="198" width="72" height="22" rx="3" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="1106" y="213" font-family="'SF Mono', monospace" font-size="9" fill="#555" text-anchor="middle" letter-spacing="1">GPT-4o</text>
+  <rect x="1100" y="378" width="72" height="22" rx="3" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="1136" y="393" font-family="'SF Mono', monospace" font-size="9" fill="#555" text-anchor="middle" letter-spacing="1">Claude 3</text>
+  <rect x="1020" y="548" width="72" height="22" rx="3" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="1056" y="563" font-family="'SF Mono', monospace" font-size="9" fill="#555" text-anchor="middle" letter-spacing="1">Gemini</text>
 
   <!-- Project title -->
-  <text x="80" y="160" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="52" font-weight="700" fill="#ffffff" letter-spacing="-2">OpenRouter</text>
-  <text x="80" y="215" font-family="'Inter', 'Helvetica Neue', sans-serif" font-size="52" font-weight="700" fill="#2a2a2a" letter-spacing="-2">Clone</text>
+  <text x="80" y="108" font-family="'Inter', sans-serif" font-size="11" fill="#444" letter-spacing="4">02</text>
+  <text x="80" y="175" font-family="'Inter', sans-serif" font-size="58" font-weight="700" fill="#ffffff" letter-spacing="-2">OpenRouter</text>
+  <text x="80" y="232" font-family="'Inter', sans-serif" font-size="58" font-weight="700" fill="#3a3a3a" letter-spacing="-2">Clone</text>
 
-  <!-- Subtitle -->
-  <text x="1200" y="650" font-family="'Inter', sans-serif" font-size="11" fill="#222" text-anchor="end" letter-spacing="3">UNIFIED LLM INTERFACE</text>
+  <!-- Tag pill -->
+  <rect x="80" y="618" width="148" height="28" rx="14" fill="#0e0e1a" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="154" y="637" font-family="'SF Mono', monospace" font-size="11" fill="#555" text-anchor="middle" letter-spacing="2">AI · API GATEWAY</text>
+
+  <text x="1200" y="675" font-family="'Inter', sans-serif" font-size="10" fill="#222" text-anchor="end" letter-spacing="3">UNIFIED LLM INTERFACE</text>
 </svg>
