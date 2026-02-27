@@ -2,6 +2,7 @@
 
 import { MeshGradient } from "@paper-design/shaders-react";
 import Hero from "./components/Hero";
+import About from "./components/About";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 
@@ -24,9 +25,11 @@ export default function Home() {
       {/* ── Page content — all sections sit above the fixed background ── */}
       <main className="relative z-10 text-white overflow-x-hidden">
         <Hero />
+        <About />
         <Projects />
         <Footer />
       </main>
     </>
   );
 }
+
