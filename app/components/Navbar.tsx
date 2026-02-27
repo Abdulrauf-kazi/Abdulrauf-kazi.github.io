@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
     { label: "HOME", href: "#home" },
@@ -13,9 +14,9 @@ function easeInOutQuint(t: number) {
 }
 
 function scrollTo(href: string) {
-    const NAVBAR_OFFSET = 80; // px — compensate for fixed header height
+    const NAVBAR_OFFSET = 80;
     const start = window.scrollY;
-    const duration = 1100; // ms
+    const duration = 1100;
 
     let target: number;
     if (href === "#home") {
@@ -40,6 +41,86 @@ function scrollTo(href: string) {
     requestAnimationFrame(step);
 }
 
+// ── Letter-wrap hover button ──────────────────────────────────────────────────
+
+const charVariants = {
+    initial: { y: "0%" },
+    hover: { y: "-100%" },
+};
+
+const charShadowVariants = {
+    initial: { y: "100%" },
+    hover: { y: "0%" },
+};
+
+function NavButton({ label, href }: { label: string; href: string }) {
+    const [hovered, setHovered] = useState(false);
+
+    return (
+        <motion.button
+            onClick={() => scrollTo(href)}
+            onHoverStart={() => setHovered(true)}
+            onHoverEnd={() => setHovered(false)}
+            className="relative overflow-hidden cursor-pointer"
+            style={{ lineHeight: "1.8" }}
+            aria-label={label}
+        >
+            {/* Each character is a clipped slot — real + shadow stacked */}
+            <span className="flex" aria-hidden="true">
+                {label.split("").map((char, i) => (
+                    <span
+                        key={i}
+                        className="relative overflow-hidden inline-flex flex-col"
+                        style={{ height: "1em" }}
+                    >
+                        {/* Real character — slides up on hover */}
+                        <motion.span
+                            className="inline-block text-[#888]"
+                            style={{
+                                fontSize: "12px",
+                                letterSpacing: "0.25em",
+                                fontWeight: 600,
+                                textTransform: "uppercase",
+                            }}
+                            animate={hovered ? "hover" : "initial"}
+                            variants={charVariants}
+                            transition={{
+                                duration: 0.35,
+                                delay: i * 0.07,
+                                ease: [0.76, 0, 0.24, 1],
+                            }}
+                        >
+                            {char}
+                        </motion.span>
+
+                        {/* Shadow character — slides in from below */}
+                        <motion.span
+                            className="inline-block text-white absolute top-0 left-0"
+                            style={{
+                                fontSize: "12px",
+                                letterSpacing: "0.25em",
+                                fontWeight: 600,
+                                textTransform: "uppercase",
+                            }}
+                            animate={hovered ? "hover" : "initial"}
+                            variants={charShadowVariants}
+                            transition={{
+                                duration: 0.35,
+                                delay: i * 0.07,
+                                ease: [0.76, 0, 0.24, 1],
+                            }}
+                        >
+                            {char}
+                        </motion.span>
+                    </span>
+                ))}
+            </span>
+        </motion.button>
+    );
+}
+
+// ── Navbar ────────────────────────────────────────────────────────────────────
+
 export default function Navbar() {
     return (
         <motion.header
@@ -58,25 +139,20 @@ export default function Navbar() {
                    hover:border-[#555] transition-colors duration-300 shrink-0"
                 aria-label="Home"
             >
-                {/* Swap inner span for <img src="/logo.png" ... /> when you have a logo */}
                 <span className="text-[#c4bfa8] text-xs font-bold leading-none tracking-tight">AK</span>
             </a>
 
-            {/* Right — Vertical stacked links */}
+            {/* Right — Vertical stacked letter-animated links */}
             <nav className="pointer-events-auto flex flex-col items-end mt-2">
                 {links.map((link, i) => (
-                    <motion.button
+                    <motion.div
                         key={link.label}
                         initial={{ opacity: 0, x: 10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.15 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                        onClick={() => scrollTo(link.href)}
-                        className="text-[#888] hover:text-white text-[11px] uppercase
-                       tracking-[0.25em] font-medium leading-[1.8]
-                       transition-colors duration-300 cursor-pointer"
                     >
-                        {link.label}
-                    </motion.button>
+                        <NavButton label={link.label} href={link.href} />
+                    </motion.div>
                 ))}
             </nav>
         </motion.header>
