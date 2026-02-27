@@ -8,12 +8,36 @@ const links = [
     { label: "CONTACT", href: "#contact" },
 ];
 
+function easeInOutQuint(t: number) {
+    return t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2;
+}
+
 function scrollTo(href: string) {
+    const NAVBAR_OFFSET = 80; // px — compensate for fixed header height
+    const start = window.scrollY;
+    const duration = 1100; // ms
+
+    let target: number;
     if (href === "#home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        target = 0;
     } else {
-        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+        const el = document.querySelector(href) as HTMLElement | null;
+        if (!el) return;
+        target = el.getBoundingClientRect().top + window.scrollY - NAVBAR_OFFSET;
     }
+
+    const distance = target - start;
+    let startTime: number | null = null;
+
+    function step(timestamp: number) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        window.scrollTo(0, start + distance * easeInOutQuint(progress));
+        if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
 }
 
 export default function Navbar() {
