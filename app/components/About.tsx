@@ -40,14 +40,14 @@ export default function About() {
                     <h2 className="text-5xl md:text-7xl font-bold text-white mb-4">
                         About
                     </h2>
-                    <p className="text-[#444] text-xs uppercase tracking-[0.25em]">
+                    <p className="text-[#707070] text-xs uppercase tracking-[0.25em]">
                         BTech CSE student who cares about the details.
                     </p>
                 </motion.div>
 
                 <motion.p
                     {...fadeUp(0.1)}
-                    className="text-[#888] text-lg md:text-xl leading-relaxed mb-6"
+                    className="text-[#a0a0a0] text-lg md:text-xl leading-relaxed mb-6"
                 >
                     I&apos;m a computer science student passionate about building
                     thoughtful digital products — from clean, performant UIs to
@@ -58,7 +58,7 @@ export default function About() {
 
                 <motion.p
                     {...fadeUp(0.2)}
-                    className="text-[#555] text-base md:text-lg leading-relaxed"
+                    className="text-[#808080] text-base md:text-lg leading-relaxed"
                 >
                     When I&apos;m not coding, you&apos;ll find me exploring open-source
                     projects, tinkering with side experiments, or thinking about
@@ -71,7 +71,7 @@ export default function About() {
             <div className="mb-20 md:mb-28">
                 <motion.h3
                     {...fadeUp(0)}
-                    className="text-xs tracking-[0.3em] uppercase text-[#555] mb-8"
+                    className="text-xs tracking-[0.3em] uppercase text-[#707070] mb-8"
                 >
                     Tech Stack
                 </motion.h3>
@@ -83,15 +83,15 @@ export default function About() {
                             {...fadeUp(gi * 0.1)}
                             className="flex flex-col sm:flex-row sm:items-start gap-3 sm:gap-8"
                         >
-                            <span className="text-xs text-[#444] uppercase tracking-widest w-28 shrink-0 pt-1">
+                            <span className="text-xs text-[#606060] uppercase tracking-widest w-28 shrink-0 pt-1">
                                 {group.category}
                             </span>
                             <div className="flex flex-wrap gap-2">
                                 {group.items.map((item) => (
                                     <span
                                         key={item}
-                                        className="px-3 py-1 text-xs font-medium text-[#999] border border-[#222]
-                                                   rounded-full hover:border-[#444] hover:text-white
+                                        className="px-3 py-1 text-xs font-medium text-[#aaa] border border-[#2a2a2a]
+                                                   rounded-full hover:border-[#555] hover:text-white
                                                    transition-colors duration-300"
                                     >
                                         {item}

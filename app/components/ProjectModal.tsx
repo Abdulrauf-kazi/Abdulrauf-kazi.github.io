@@ -28,8 +28,8 @@ const overlayVariants = {
 
 const panelVariants = {
     hidden: { opacity: 0, y: 40, scale: 0.97 },
-    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
-    exit: { opacity: 0, y: 20, scale: 0.97, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] } },
+    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
+    exit: { opacity: 0, y: 20, scale: 0.97, transition: { duration: 0.25, ease: [0.76, 0, 0.24, 1] as [number, number, number, number] } },
 };
 
 export default function ProjectModal({ project, onClose }: Props) {
@@ -93,7 +93,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                         <div className="p-8 md:p-10">
                             {/* Tag + close */}
                             <div className="flex items-start justify-between mb-4">
-                                <span className="text-[10px] tracking-[0.3em] uppercase text-[#555] font-medium">
+                                <span className="text-[10px] tracking-[0.3em] uppercase text-[#707070] font-medium">
                                     {project.tag}
                                 </span>
                                 <button
@@ -115,7 +115,7 @@ export default function ProjectModal({ project, onClose }: Props) {
                             </h2>
 
                             {/* Short description */}
-                            <p className="text-[#999] text-base leading-relaxed mb-6">
+                            <p className="text-[#a0a0a0] text-base leading-relaxed mb-6">
                                 {project.description}
                             </p>
 
@@ -123,22 +123,22 @@ export default function ProjectModal({ project, onClose }: Props) {
                             <div className="border-t border-[#161616] mb-6" />
 
                             {/* Long detail */}
-                            <p className="text-[#666] text-sm leading-loose mb-8">
+                            <p className="text-[#888] text-sm leading-loose mb-8">
                                 {project.detail}
                             </p>
 
                             {/* Tech pills */}
                             {project.tech.length > 0 && (
                                 <div className="mb-8">
-                                    <p className="text-[10px] tracking-[0.3em] uppercase text-[#444] mb-3">
+                                    <p className="text-[10px] tracking-[0.3em] uppercase text-[#606060] mb-3">
                                         Built with
                                     </p>
                                     <div className="flex flex-wrap gap-2">
                                         {project.tech.map((t) => (
                                             <span
                                                 key={t}
-                                                className="px-3 py-1 text-xs font-medium text-[#888] border border-[#1e1e1e]
-                                                           rounded-full hover:border-[#333] hover:text-white transition-colors duration-200"
+                                                className="px-3 py-1 text-xs font-medium text-[#a0a0a0] border border-[#252525]
+                                                           rounded-full hover:border-[#444] hover:text-white transition-colors duration-200"
                                             >
                                                 {t}
                                             </span>

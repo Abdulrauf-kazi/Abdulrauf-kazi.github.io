@@ -32,11 +32,11 @@ export default function Hero() {
 
                 {/* Role tag row */}
                 <motion.div {...fadeUp(0.5)} className="flex items-center gap-4 mt-6">
-                    <span className="text-xs tracking-[0.3em] uppercase text-[#666] font-medium">
+                    <span className="text-xs tracking-[0.3em] uppercase text-[#909090] font-medium">
                         BTech · CSE · Student
                     </span>
                     <span className="h-px flex-1 max-w-[80px] bg-[#333]" />
-                    <span className="text-xs tracking-[0.2em] uppercase text-[#444] font-medium">
+                    <span className="text-xs tracking-[0.2em] uppercase text-[#707070] font-medium">
                         2024 – present
                     </span>
                 </motion.div>
@@ -46,13 +46,13 @@ export default function Hero() {
                     {...fadeUp(0.8)}
                     className="absolute bottom-10 right-8 md:right-20 flex flex-col items-center gap-2"
                 >
-                    <span className="text-[10px] tracking-[0.3em] uppercase text-[#555] rotate-90 origin-center">
+                    <span className="text-[10px] tracking-[0.3em] uppercase text-[#888] rotate-90 origin-center">
                         scroll
                     </span>
                     <motion.span
                         animate={{ y: [0, 6, 0] }}
                         transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-                        className="text-[#444] text-xl leading-none"
+                        className="text-[#777] text-xl leading-none"
                     >
                         ↓
                     </motion.span>
@@ -77,7 +77,7 @@ export default function Hero() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.15, duration: 0.9, ease: EASE }}
-                        className="mt-6 text-base md:text-lg text-[#777] leading-relaxed max-w-xl"
+                        className="mt-6 text-base md:text-lg text-[#a0a0a0] leading-relaxed max-w-xl"
                     >
                         Computer science student obsessed with clean interfaces,
                         thoughtful code, and turning ideas into real products.

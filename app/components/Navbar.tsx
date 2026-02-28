@@ -76,7 +76,7 @@ function NavButton({ label, href }: { label: string; href: string }) {
                     >
                         {/* Real character — slides up on hover */}
                         <motion.span
-                            className="inline-block text-[#888]"
+                            className="inline-block text-[#a0a0a0]"
                             style={{
                                 fontSize: "12px",
                                 letterSpacing: "0.25em",

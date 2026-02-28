@@ -33,13 +33,13 @@ const projects: Project[] = [
     },
     {
         id: 3,
-        title: "CivicReport",
+        title: "Petition",
         tag: "Civic · Full-stack",
         description: "Petition platform for citizens to report city problems.",
         detail:
             "A full-stack civic tech platform that empowers citizens to report local issues — potholes, broken streetlights, garbage overflow — directly to city authorities. Features geotagged reports, image uploads, status tracking, and an admin dashboard for municipal teams.",
         tech: ["React", "Node.js", "Express", "PostgreSQL", "Cloudinary"],
-        src: "/projects/civicreport.svg",
+        src: "/projects/petition.svg",
         github: "https://github.com/Abdulrauf-kazi",
         live: null,
         span: "col-span-1 row-span-1",
@@ -55,19 +55,7 @@ const projects: Project[] = [
         src: null,
         github: "https://github.com/Abdulrauf-kazi",
         live: null,
-        span: "col-span-1 row-span-1",
-    },
-    {
-        id: 5,
-        title: "Coming Soon",
-        tag: "— · —",
-        description: "Next project in progress. Something interesting is on the way.",
-        detail: "",
-        tech: [],
-        src: null,
-        github: null,
-        live: null,
-        span: "col-span-1 row-span-1",
+        span: "col-span-3 row-span-1",
     },
 ];
 
@@ -110,10 +98,16 @@ export default function Projects() {
                         <p className="text-[#444] text-xs uppercase tracking-[0.25em]">Selected work</p>
                     </motion.div>
 
-                    {/* Bento Grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[280px] gap-4">
+                    {/*
+                      Bento layout (3-col grid):
+                      [ Excalidraw  2×2 ] [ OpenRouter  1×1 ]
+                      [              ] [ CivicReport 1×1 ]
+                      [ Atlas          3×1 (full width)  ]
+                    */}
+                    <div className="grid grid-cols-3 auto-rows-[260px] gap-4">
                         {projects.map((project, i) => {
                             const isClickable = !!(project.detail || project.github || project.live);
+                            const isWide = project.span.includes("col-span-3");
 
                             return (
                                 <motion.div
@@ -124,11 +118,11 @@ export default function Projects() {
                                     viewport={{ once: true, margin: "-60px" }}
                                     variants={fadeUp}
                                     onClick={() => openModal(project)}
-                                    className={`group relative rounded-2xl overflow-hidden border border-[#1a1a1a]
-                                                bg-[#0d0d0d] hover:border-[#2e2e2e]
-                                                transition-colors duration-500
+                                    className={`group relative rounded-2xl overflow-hidden
+                                                border border-[#1a1a1a] bg-[#0d0d0d]
+                                                hover:border-[#2a2a2a] transition-colors duration-500
                                                 ${isClickable ? "cursor-pointer" : "cursor-default"}
-                                                ${project.span}`}
+                                                ${project.span ?? ""}`}
                                 >
                                     {/* Background image */}
                                     {project.src && (
@@ -137,41 +131,35 @@ export default function Projects() {
                                                 src={project.src}
                                                 alt={project.title}
                                                 className="w-full h-full object-cover object-top
-                                                           opacity-30 group-hover:opacity-50
+                                                           opacity-25 group-hover:opacity-45
                                                            scale-100 group-hover:scale-105
                                                            transition-all duration-700 ease-out"
                                                 draggable={false}
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/60 to-transparent" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/50 to-transparent" />
                                         </div>
                                     )}
 
-                                    {/* Atlas placeholder — map pin icon */}
-                                    {!project.src && project.id === 4 && (
-                                        <div className="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity duration-500">
-                                            <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
-                                                stroke="white" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                                    {/* Atlas — decorative map-pin grid background */}
+                                    {project.id === 4 && (
+                                        <div className="absolute inset-0 flex items-center justify-end pr-16 opacity-[0.07] group-hover:opacity-[0.13] transition-opacity duration-700">
+                                            <svg width="180" height="180" viewBox="0 0 24 24" fill="none"
+                                                stroke="white" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round">
                                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                                                 <circle cx="12" cy="10" r="3" />
                                             </svg>
                                         </div>
                                     )}
 
-                                    {/* Coming Soon placeholder */}
-                                    {!project.src && project.id === 5 && (
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="w-12 h-12 border border-[#222] rounded-full flex items-center justify-center">
-                                                <span className="text-[#333] text-2xl leading-none">+</span>
-                                            </div>
-                                        </div>
-                                    )}
-
-                                    {/* Click hint — top right */}
-                                    {isClickable && project.id !== 5 && (
-                                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                            <div className="w-7 h-7 rounded-full border border-[#333] flex items-center justify-center">
-                                                <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                                    stroke="#666" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    {/* Click hint pill — top right */}
+                                    {isClickable && (
+                                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100
+                                                        transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+                                            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full
+                                                            border border-[#2a2a2a] bg-[#0d0d0d]/80 backdrop-blur-sm">
+                                                <span className="text-[#555] text-[9px] tracking-[0.2em] uppercase">Open</span>
+                                                <svg width="8" height="8" viewBox="0 0 24 24" fill="none"
+                                                    stroke="#555" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                     <line x1="5" y1="12" x2="19" y2="12" />
                                                     <polyline points="12 5 19 12 12 19" />
                                                 </svg>
@@ -179,25 +167,49 @@ export default function Projects() {
                                         </div>
                                     )}
 
-                                    {/* Content — pinned to bottom */}
-                                    <div className="absolute inset-0 flex flex-col justify-end p-5">
-                                        <p className="text-[#666] text-[10px] tracking-[0.25em] uppercase mb-1.5 font-medium">
-                                            {project.tag}
-                                        </p>
-                                        <h3 className="text-white font-bold text-xl leading-tight mb-1.5">
-                                            {project.title}
-                                        </h3>
-                                        <p className="text-[#888] text-sm leading-relaxed mb-3
-                                                      max-h-0 overflow-hidden opacity-0
-                                                      group-hover:max-h-16 group-hover:opacity-100
-                                                      transition-all duration-500 ease-out">
-                                            {project.description}
-                                        </p>
-                                        {isClickable && project.id !== 5 && (
-                                            <p className="text-[#444] text-[10px] tracking-[0.2em] uppercase
-                                                          opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                Click to explore →
-                                            </p>
+                                    {/* Content */}
+                                    <div className={`absolute inset-0 flex flex-col justify-end
+                                                     ${isWide ? "p-8 md:p-10 flex-row items-end" : "p-5"}`}>
+                                        {/* Wide card (Atlas) — horizontal layout */}
+                                        {isWide ? (
+                                            <>
+                                                <div className="flex-1">
+                                                    <p className="text-[#707070] text-[10px] tracking-[0.3em] uppercase mb-2 font-medium">
+                                                        {project.tag}
+                                                    </p>
+                                                    <h3 className="text-white font-bold text-3xl md:text-4xl leading-tight mb-3">
+                                                        {project.title}
+                                                    </h3>
+                                                    <p className="text-[#909090] text-sm leading-relaxed max-w-md">
+                                                        {project.description}
+                                                    </p>
+                                                </div>
+                                                <div className="flex items-center gap-2 shrink-0 mb-1">
+                                                    {project.tech.slice(0, 3).map((t) => (
+                                                        <span key={t}
+                                                            className="px-2.5 py-1 text-[10px] font-medium text-[#808080]
+                                                                       border border-[#252525] rounded-full">
+                                                            {t}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            </>
+                                        ) : (
+                                            /* Normal card — vertical layout */
+                                            <>
+                                                <p className="text-[#808080] text-[10px] tracking-[0.25em] uppercase mb-1.5 font-medium">
+                                                    {project.tag}
+                                                </p>
+                                                <h3 className="text-white font-bold text-xl leading-tight mb-1.5">
+                                                    {project.title}
+                                                </h3>
+                                                <p className="text-[#909090] text-sm leading-relaxed
+                                                              max-h-0 overflow-hidden opacity-0
+                                                              group-hover:max-h-16 group-hover:opacity-100
+                                                              transition-all duration-500 ease-out mb-0 group-hover:mb-2">
+                                                    {project.description}
+                                                </p>
+                                            </>
                                         )}
                                     </div>
                                 </motion.div>

@@ -54,7 +54,7 @@ export default function Footer() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
-                            className="text-xs uppercase tracking-[0.3em] text-[#555] mb-4"
+                            className="text-xs uppercase tracking-[0.3em] text-[#707070] mb-4"
                         >
                             Available for projects
                         </motion.p>
@@ -102,7 +102,7 @@ export default function Footer() {
                     >
                         {/* Email */}
                         <div className="mb-10">
-                            <p className="text-xs uppercase tracking-[0.3em] text-[#444] mb-3">Email</p>
+                            <p className="text-xs uppercase tracking-[0.3em] text-[#606060] mb-3">Email</p>
                             <a
                                 href="mailto:kaziabdulrauf15@gmail.com"
                                 className="text-[#bbb] text-lg hover:text-white transition-colors duration-300"
@@ -113,7 +113,7 @@ export default function Footer() {
 
                         {/* Socials */}
                         <div>
-                            <p className="text-xs uppercase tracking-[0.3em] text-[#444] mb-4">Socials</p>
+                            <p className="text-xs uppercase tracking-[0.3em] text-[#606060] mb-4">Socials</p>
                             <div className="flex items-center gap-4">
                                 {socials.map(({ label, href, icon }) => (
                                     <a
@@ -124,7 +124,7 @@ export default function Footer() {
                                         aria-label={label}
                                         title={label}
                                         className="w-10 h-10 rounded-xl flex items-center justify-center
-                                                   border border-[#222] bg-[#111] text-[#666]
+                                                   border border-[#222] bg-[#111] text-[#888]
                                                    hover:border-[#7c3aed] hover:text-white hover:bg-[#1a1025]
                                                    transition-all duration-300 hover:scale-110 hover:shadow-[0_0_16px_rgba(124,58,237,0.3)]"
                                     >
@@ -147,10 +147,10 @@ export default function Footer() {
                     transition={{ delay: 0.4, duration: 0.7 }}
                     className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
                 >
-                    <p className="text-sm text-[#444]">
+                    <p className="text-sm text-[#606060]">
                         © {new Date().getFullYear()} Abdulrauf Kazi. All rights reserved.
                     </p>
-                    <p className="text-xs text-[#333] tracking-[0.15em] uppercase">
+                    <p className="text-xs text-[#505050] tracking-[0.15em] uppercase">
                         Designed &amp; built by hand
                     </p>
                 </motion.div>
