@@ -19,23 +19,6 @@ const skills = [
     { category: "Tools", items: ["Git", "Figma", "VS Code", "Tailwind CSS"] },
 ];
 
-const timeline = [
-    {
-        year: "2023",
-        title: "Started BTech CSE",
-        desc: "Enrolled in Computer Science & Engineering. Started learning fundamentals — data structures, algorithms, and the web.",
-    },
-    {
-        year: "2024",
-        title: "First Real Project",
-        desc: "Built my first full-stack web app. Learned React, Next.js, and how to ship something real.",
-    },
-    {
-        year: "2025",
-        title: "Sharpening the Craft",
-        desc: "Focusing on clean code, UI details, and building a portfolio of work worth showing.",
-    },
-];
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -45,38 +28,29 @@ export default function About() {
             id="about"
             className="px-8 md:px-20 py-24 md:py-36 border-t border-[#1a1a1a]"
         >
-            {/* Section label */}
-            <motion.span
-                {...fadeUp(0)}
-                className="block text-[10px] tracking-[0.35em] uppercase text-[#555] mb-14"
-            >
-                About
-            </motion.span>
-
             {/* ── BIO ── */}
             <div className="max-w-2xl mb-20 md:mb-28">
-                <motion.p
-                    {...fadeUp(0.1)}
-                    className="text-2xl md:text-3xl font-semibold text-white leading-[1.3] tracking-tight"
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.8, ease: EASE }}
+                    className="mb-12"
                 >
-                    BTech CSE student who cares about the details.
-                </motion.p>
-                <motion.p
-                    {...fadeUp(0.2)}
-                    className="mt-5 text-base text-[#666] leading-relaxed"
-                >
-                    I'm Abdulrauf Kazi — a computer science student driven by curiosity
-                    and a genuine love for building. I spend my time writing code, studying
-                    design, and figuring out how to make things that actually work well.
-                    Not just functional — thoughtful.
-                </motion.p>
+                    <h2 className="text-4xl md:text-6xl font-bold text-white mb-3">
+                        About
+                    </h2>
+                    <p className="text-[#444] text-xs uppercase tracking-[0.25em]">
+                        BTech CSE student who cares about the details.
+                    </p>
+                </motion.div>
             </div>
 
             {/* ── TECH STACK & SKILLS ── */}
             <div className="mb-20 md:mb-28">
                 <motion.h3
                     {...fadeUp(0)}
-                    className="text-[10px] tracking-[0.3em] uppercase text-[#555] mb-8"
+                    className="text-xs tracking-[0.3em] uppercase text-[#555] mb-8"
                 >
                     Tech Stack
                 </motion.h3>
@@ -108,42 +82,7 @@ export default function About() {
                 </div>
             </div>
 
-            {/* ── TIMELINE ── */}
-            <div>
-                <motion.h3
-                    {...fadeUp(0)}
-                    className="text-[10px] tracking-[0.3em] uppercase text-[#555] mb-8"
-                >
-                    Timeline
-                </motion.h3>
 
-                <div className="relative flex flex-col gap-0">
-                    {/* Vertical line */}
-                    <div className="absolute left-[3.25rem] top-0 bottom-0 w-px bg-[#1c1c1c]" />
-
-                    {timeline.map((item, i) => (
-                        <motion.div
-                            key={item.year}
-                            {...fadeUp(i * 0.12)}
-                            className="flex gap-8 items-start py-8 border-b border-[#111] last:border-b-0"
-                        >
-                            {/* Year */}
-                            <span className="text-xs text-[#444] tracking-widest font-mono w-10 shrink-0 pt-0.5">
-                                {item.year}
-                            </span>
-
-                            {/* Dot */}
-                            <span className="relative z-10 mt-1.5 w-2 h-2 rounded-full bg-[#333] border border-[#555] shrink-0" />
-
-                            {/* Text */}
-                            <div>
-                                <p className="text-sm font-semibold text-white">{item.title}</p>
-                                <p className="mt-1 text-sm text-[#555] leading-relaxed">{item.desc}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
         </section>
     );
 }
