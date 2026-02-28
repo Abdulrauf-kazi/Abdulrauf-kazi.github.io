@@ -44,7 +44,7 @@ export default function Hero() {
                 {/* Scroll cue */}
                 <motion.div
                     {...fadeUp(0.8)}
-                    className="absolute bottom-10 right-8 md:right-20 flex flex-col items-center gap-2"
+                    className="absolute bottom-10 right-8 md:right-20 flex flex-col items-center gap-5"
                 >
                     <span className="text-[10px] tracking-[0.3em] uppercase text-[var(--text-muted)] rotate-90 origin-center">
                         scroll
