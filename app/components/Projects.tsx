@@ -119,8 +119,8 @@ export default function Projects() {
                                     variants={fadeUp}
                                     onClick={() => openModal(project)}
                                     className={`group relative rounded-2xl overflow-hidden
-                                                border border-[#1a1a1a] bg-[#0d0d0d]
-                                                hover:border-[#2a2a2a] transition-colors duration-500
+                                                border border-white/[0.07] bg-black/40 backdrop-blur-md
+                                                hover:border-white/[0.12] transition-colors duration-500
                                                 ${isClickable ? "cursor-pointer" : "cursor-default"}
                                                 ${project.span ?? ""}`}
                                 >

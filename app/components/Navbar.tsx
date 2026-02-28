@@ -128,21 +128,9 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-0 left-0 right-0 z-50 flex justify-between items-start
+            className="fixed top-0 left-0 right-0 z-50 flex justify-end items-start
                  pt-10 md:pt-14 px-12 md:px-20 bg-transparent pointer-events-none"
         >
-            {/* Left — Circular logo */}
-            <a
-                href="#"
-                onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-                className="pointer-events-auto w-12 h-12 rounded-full border border-[#333]
-                   overflow-hidden flex items-center justify-center
-                   hover:border-[#555] transition-colors duration-300 shrink-0"
-                aria-label="Home"
-            >
-                <span className="text-[#c4bfa8] text-xs font-bold leading-none tracking-tight">AK</span>
-            </a>
-
             {/* Right — Vertical stacked letter-animated links */}
             <nav className="pointer-events-auto flex flex-col items-end mt-2">
                 {links.map((link, i) => (

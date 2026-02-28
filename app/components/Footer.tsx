@@ -38,8 +38,8 @@ export default function Footer() {
 
             {/* Ambient glow */}
             <div
-                className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full opacity-10"
-                style={{ background: "radial-gradient(ellipse at center, #7c3aed 0%, transparent 70%)" }}
+                className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full opacity-5"
+                style={{ background: "radial-gradient(ellipse at center, #ffffff 0%, transparent 70%)" }}
             />
 
             <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 pt-24 pb-12">
@@ -69,7 +69,7 @@ export default function Footer() {
                             Let&apos;s build
                             <br />
                             <span className="text-transparent bg-clip-text"
-                                style={{ backgroundImage: "linear-gradient(135deg, #a78bfa 0%, #7c3aed 50%, #4f46e5 100%)" }}>
+                                style={{ backgroundImage: "linear-gradient(135deg, #ffffff 0%, #888888 100%)" }}>
                                 something great.
                             </span>
                         </motion.h2>
@@ -81,8 +81,8 @@ export default function Footer() {
                             transition={{ delay: 0.2, duration: 0.6 }}
                             href="mailto:kaziabdulrauf15@gmail.com"
                             className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-sm font-semibold text-white
-                                       transition-all duration-300 hover:scale-105 hover:shadow-[0_0_32px_rgba(124,58,237,0.45)]"
-                            style={{ background: "linear-gradient(135deg, #7c3aed, #4f46e5)" }}
+                                       border border-white/20 bg-white/10 backdrop-blur-sm
+                                       transition-all duration-300 hover:scale-105 hover:bg-white/15 hover:border-white/30"
                         >
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -124,9 +124,9 @@ export default function Footer() {
                                         aria-label={label}
                                         title={label}
                                         className="w-10 h-10 rounded-xl flex items-center justify-center
-                                                   border border-[#222] bg-[#111] text-[#888]
-                                                   hover:border-[#7c3aed] hover:text-white hover:bg-[#1a1025]
-                                                   transition-all duration-300 hover:scale-110 hover:shadow-[0_0_16px_rgba(124,58,237,0.3)]"
+                                                   border border-white/[0.07] bg-white/5 backdrop-blur-md text-[#888]
+                                                   hover:border-white/20 hover:text-white hover:bg-white/10
+                                                   transition-all duration-300 hover:scale-110"
                                     >
                                         {icon}
                                     </a>
