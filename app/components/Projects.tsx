@@ -76,7 +76,6 @@ export default function Projects() {
     const [active, setActive] = useState<Project | null>(null);
 
     const openModal = (project: Project) => {
-        // Don't open modal for placeholder cards
         if (!project.github && !project.live && !project.detail) return;
         setActive(project);
     };
@@ -94,20 +93,15 @@ export default function Projects() {
                         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                         className="mb-12"
                     >
-                        <h2 className="text-4xl md:text-6xl font-bold text-white mb-3">Projects</h2>
-                        <p className="text-[#444] text-xs uppercase tracking-[0.25em]">Selected work</p>
+                        <h2 className="text-4xl md:text-6xl font-bold text-[var(--text-primary)] mb-3">Projects</h2>
+                        <p className="text-[var(--text-dim)] text-xs uppercase tracking-[0.25em]">Selected work</p>
                     </motion.div>
 
-                    {/*
-                      Bento layout (3-col grid):
-                      [ Excalidraw  2×2 ] [ OpenRouter  1×1 ]
-                      [              ] [ CivicReport 1×1 ]
-                      [ Atlas          3×1 (full width)  ]
-                    */}
+                    {/* Bento Grid */}
                     <div className="grid grid-cols-3 auto-rows-[260px] gap-4">
                         {projects.map((project, i) => {
                             const isClickable = !!(project.detail || project.github || project.live);
-                            const isWide = project.span.includes("col-span-3");
+                            const isWide = project.span?.includes("col-span-3");
 
                             return (
                                 <motion.div
@@ -118,11 +112,14 @@ export default function Projects() {
                                     viewport={{ once: true, margin: "-60px" }}
                                     variants={fadeUp}
                                     onClick={() => openModal(project)}
-                                    className={`group relative rounded-2xl overflow-hidden
-                                                border border-white/[0.07] bg-black/40 backdrop-blur-md
-                                                hover:border-white/[0.12] transition-colors duration-500
+                                    className={`group relative rounded-2xl overflow-hidden transition-colors duration-500
                                                 ${isClickable ? "cursor-pointer" : "cursor-default"}
                                                 ${project.span ?? ""}`}
+                                    style={{
+                                        background: "var(--card-bg)",
+                                        border: "1px solid var(--card-border)",
+                                        backdropFilter: "blur(12px)",
+                                    }}
                                 >
                                     {/* Background image */}
                                     {project.src && (
@@ -136,30 +133,33 @@ export default function Projects() {
                                                            transition-all duration-700 ease-out"
                                                 draggable={false}
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-[#0d0d0d]/50 to-transparent" />
+                                            <div className="absolute inset-0"
+                                                style={{ background: "linear-gradient(to top, var(--card-bg), transparent)" }} />
                                         </div>
                                     )}
 
-                                    {/* Atlas — decorative map-pin grid background */}
+                                    {/* Atlas — map-pin decoration */}
                                     {project.id === 4 && (
                                         <div className="absolute inset-0 flex items-center justify-end pr-16 opacity-[0.07] group-hover:opacity-[0.13] transition-opacity duration-700">
                                             <svg width="180" height="180" viewBox="0 0 24 24" fill="none"
-                                                stroke="white" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round">
+                                                stroke="currentColor" strokeWidth="0.6" strokeLinecap="round" strokeLinejoin="round"
+                                                className="text-[var(--text-primary)]">
                                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                                                 <circle cx="12" cy="10" r="3" />
                                             </svg>
                                         </div>
                                     )}
 
-                                    {/* Click hint pill — top right */}
+                                    {/* Click hint pill */}
                                     {isClickable && (
                                         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100
                                                         transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                                            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full
-                                                            border border-[#2a2a2a] bg-[#0d0d0d]/80 backdrop-blur-sm">
-                                                <span className="text-[#555] text-[9px] tracking-[0.2em] uppercase">Open</span>
+                                            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full backdrop-blur-sm"
+                                                style={{ border: "1px solid var(--card-border-hover)", background: "var(--card-bg)" }}>
+                                                <span className="text-[var(--text-dim)] text-[9px] tracking-[0.2em] uppercase">Open</span>
                                                 <svg width="8" height="8" viewBox="0 0 24 24" fill="none"
-                                                    stroke="#555" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                    stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+                                                    className="text-[var(--text-dim)]">
                                                     <line x1="5" y1="12" x2="19" y2="12" />
                                                     <polyline points="12 5 19 12 12 19" />
                                                 </svg>
@@ -170,40 +170,38 @@ export default function Projects() {
                                     {/* Content */}
                                     <div className={`absolute inset-0 flex flex-col justify-end
                                                      ${isWide ? "p-8 md:p-10 flex-row items-end" : "p-5"}`}>
-                                        {/* Wide card (Atlas) — horizontal layout */}
                                         {isWide ? (
                                             <>
                                                 <div className="flex-1">
-                                                    <p className="text-[#707070] text-[10px] tracking-[0.3em] uppercase mb-2 font-medium">
+                                                    <p className="text-[var(--tag-text)] text-[10px] tracking-[0.3em] uppercase mb-2 font-medium">
                                                         {project.tag}
                                                     </p>
-                                                    <h3 className="text-white font-bold text-3xl md:text-4xl leading-tight mb-3">
+                                                    <h3 className="text-[var(--text-primary)] font-bold text-3xl md:text-4xl leading-tight mb-3">
                                                         {project.title}
                                                     </h3>
-                                                    <p className="text-[#909090] text-sm leading-relaxed max-w-md">
+                                                    <p className="text-[var(--text-body)] text-sm leading-relaxed max-w-md">
                                                         {project.description}
                                                     </p>
                                                 </div>
                                                 <div className="flex items-center gap-2 shrink-0 mb-1">
                                                     {project.tech.slice(0, 3).map((t) => (
                                                         <span key={t}
-                                                            className="px-2.5 py-1 text-[10px] font-medium text-[#808080]
-                                                                       border border-[#252525] rounded-full">
+                                                            className="px-2.5 py-1 text-[10px] font-medium text-[var(--pill-text)] rounded-full"
+                                                            style={{ border: "1px solid var(--pill-border)" }}>
                                                             {t}
                                                         </span>
                                                     ))}
                                                 </div>
                                             </>
                                         ) : (
-                                            /* Normal card — vertical layout */
                                             <>
-                                                <p className="text-[#808080] text-[10px] tracking-[0.25em] uppercase mb-1.5 font-medium">
+                                                <p className="text-[var(--tag-text)] text-[10px] tracking-[0.25em] uppercase mb-1.5 font-medium">
                                                     {project.tag}
                                                 </p>
-                                                <h3 className="text-white font-bold text-xl leading-tight mb-1.5">
+                                                <h3 className="text-[var(--text-primary)] font-bold text-xl leading-tight mb-1.5">
                                                     {project.title}
                                                 </h3>
-                                                <p className="text-[#909090] text-sm leading-relaxed
+                                                <p className="text-[var(--text-body)] text-sm leading-relaxed
                                                               max-h-0 overflow-hidden opacity-0
                                                               group-hover:max-h-16 group-hover:opacity-100
                                                               transition-all duration-500 ease-out mb-0 group-hover:mb-2">

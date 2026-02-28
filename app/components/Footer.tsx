@@ -34,12 +34,12 @@ const socials = [
 
 export default function Footer() {
     return (
-        <footer id="contact" className="relative overflow-hidden border-t border-[#1a1a1a]">
+        <footer id="contact" className="relative overflow-hidden" style={{ borderTop: "1px solid var(--section-border)" }}>
 
             {/* Ambient glow */}
             <div
                 className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full opacity-5"
-                style={{ background: "radial-gradient(ellipse at center, #ffffff 0%, transparent 70%)" }}
+                style={{ background: "radial-gradient(ellipse at center, var(--text-primary) 0%, transparent 70%)" }}
             />
 
             <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 pt-24 pb-12">
@@ -54,7 +54,7 @@ export default function Footer() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
-                            className="text-xs uppercase tracking-[0.3em] text-[#707070] mb-4"
+                            className="text-xs uppercase tracking-[0.3em] text-[var(--text-muted)] mb-4"
                         >
                             Available for projects
                         </motion.p>
@@ -64,12 +64,12 @@ export default function Footer() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-80px" }}
                             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-4xl md:text-6xl font-bold text-white leading-[1.1] mb-8"
+                            className="text-4xl md:text-6xl font-bold text-[var(--text-primary)] leading-[1.1] mb-8"
                         >
                             Let&apos;s build
                             <br />
                             <span className="text-transparent bg-clip-text"
-                                style={{ backgroundImage: "linear-gradient(135deg, #ffffff 0%, #888888 100%)" }}>
+                                style={{ backgroundImage: "linear-gradient(135deg, var(--text-primary) 0%, var(--text-muted) 100%)" }}>
                                 something great.
                             </span>
                         </motion.h2>
@@ -80,9 +80,13 @@ export default function Footer() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.2, duration: 0.6 }}
                             href="mailto:kaziabdulrauf15@gmail.com"
-                            className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-sm font-semibold text-white
-                                       border border-white/20 bg-white/10 backdrop-blur-sm
-                                       transition-all duration-300 hover:scale-105 hover:bg-white/15 hover:border-white/30"
+                            className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full text-sm font-semibold
+                                       text-[var(--text-primary)] backdrop-blur-sm
+                                       transition-all duration-300 hover:scale-105"
+                            style={{
+                                border: "1px solid var(--card-border-hover)",
+                                background: "var(--card-bg)",
+                            }}
                         >
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -102,10 +106,10 @@ export default function Footer() {
                     >
                         {/* Email */}
                         <div className="mb-10">
-                            <p className="text-xs uppercase tracking-[0.3em] text-[#606060] mb-3">Email</p>
+                            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-dim)] mb-3">Email</p>
                             <a
                                 href="mailto:kaziabdulrauf15@gmail.com"
-                                className="text-[#bbb] text-lg hover:text-white transition-colors duration-300"
+                                className="text-[var(--text-body)] text-lg hover:text-[var(--text-primary)] transition-colors duration-300"
                             >
                                 kaziabdulrauf15@gmail.com
                             </a>
@@ -113,7 +117,7 @@ export default function Footer() {
 
                         {/* Socials */}
                         <div>
-                            <p className="text-xs uppercase tracking-[0.3em] text-[#606060] mb-4">Socials</p>
+                            <p className="text-xs uppercase tracking-[0.3em] text-[var(--text-dim)] mb-4">Socials</p>
                             <div className="flex items-center gap-4">
                                 {socials.map(({ label, href, icon }) => (
                                     <a
@@ -124,9 +128,12 @@ export default function Footer() {
                                         aria-label={label}
                                         title={label}
                                         className="w-10 h-10 rounded-xl flex items-center justify-center
-                                                   border border-white/[0.07] bg-white/5 backdrop-blur-md text-[#888]
-                                                   hover:border-white/20 hover:text-white hover:bg-white/10
-                                                   transition-all duration-300 hover:scale-110"
+                                                   text-[var(--text-muted)] hover:text-[var(--text-primary)]
+                                                   backdrop-blur-md transition-all duration-300 hover:scale-110"
+                                        style={{
+                                            border: "1px solid var(--card-border)",
+                                            background: "var(--card-bg)",
+                                        }}
                                     >
                                         {icon}
                                     </a>
@@ -137,7 +144,7 @@ export default function Footer() {
                 </div>
 
                 {/* Divider */}
-                <div className="w-full h-px bg-[#1a1a1a] mb-8" />
+                <div className="w-full h-px mb-8" style={{ background: "var(--section-border)" }} />
 
                 {/* Bottom bar */}
                 <motion.div
@@ -147,10 +154,10 @@ export default function Footer() {
                     transition={{ delay: 0.4, duration: 0.7 }}
                     className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
                 >
-                    <p className="text-sm text-[#606060]">
+                    <p className="text-sm text-[var(--text-dim)]">
                         © {new Date().getFullYear()} Abdulrauf Kazi. All rights reserved.
                     </p>
-                    <p className="text-xs text-[#505050] tracking-[0.15em] uppercase">
+                    <p className="text-xs text-[var(--text-dim)] tracking-[0.15em] uppercase">
                         Designed &amp; built by hand
                     </p>
                 </motion.div>
