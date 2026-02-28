@@ -16,7 +16,7 @@ const fadeUp = (delay = 0) => ({
 const skills = [
     { category: "Languages", items: ["JavaScript", "TypeScript", "Python", "C++"] },
     { category: "Frameworks", items: ["React", "Next.js", "Node.js", "Express"] },
-    { category: "Tools", items: ["Git", "Figma", "VS Code", "Tailwind CSS"] },
+    { category: "Tools", items: ["Git", "Figma", "VS Code", "Tailwind CSS", "Docker", "Nginx", "Deployment"] },
 ];
 
 
