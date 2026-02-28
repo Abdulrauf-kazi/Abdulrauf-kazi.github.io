@@ -26,25 +26,46 @@ export default function About() {
     return (
         <section
             id="about"
-            className="px-8 md:px-20 py-24 md:py-36 border-t border-[#1a1a1a]"
+            className="px-8 md:px-20 py-32 md:py-48 border-t border-[#1a1a1a]"
         >
             {/* ── BIO ── */}
-            <div className="max-w-2xl mb-20 md:mb-28">
+            <div className="max-w-3xl mb-24 md:mb-36">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-80px" }}
                     transition={{ duration: 0.8, ease: EASE }}
-                    className="mb-12"
+                    className="mb-10"
                 >
-                    <h2 className="text-4xl md:text-6xl font-bold text-white mb-3">
+                    <h2 className="text-5xl md:text-7xl font-bold text-white mb-4">
                         About
                     </h2>
                     <p className="text-[#444] text-xs uppercase tracking-[0.25em]">
                         BTech CSE student who cares about the details.
                     </p>
                 </motion.div>
+
+                <motion.p
+                    {...fadeUp(0.1)}
+                    className="text-[#888] text-lg md:text-xl leading-relaxed mb-6"
+                >
+                    I&apos;m a computer science student passionate about building
+                    thoughtful digital products — from clean, performant UIs to
+                    well-structured backends. I enjoy the entire process: sketching
+                    ideas, writing code that scales, and obsessing over the small
+                    details that make a product feel polished.
+                </motion.p>
+
+                <motion.p
+                    {...fadeUp(0.2)}
+                    className="text-[#555] text-base md:text-lg leading-relaxed"
+                >
+                    When I&apos;m not coding, you&apos;ll find me exploring open-source
+                    projects, tinkering with side experiments, or thinking about
+                    how great design and engineering intersect.
+                </motion.p>
             </div>
+
 
             {/* ── TECH STACK & SKILLS ── */}
             <div className="mb-20 md:mb-28">
