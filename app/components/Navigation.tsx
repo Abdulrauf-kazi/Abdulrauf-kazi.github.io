@@ -7,14 +7,21 @@ import { motion, AnimatePresence } from "framer-motion";
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 const NAV_LINKS = [
-    { href: "#hero", label: "Home" },
-    { href: "#projects", label: "Projects" },
     { href: "#about", label: "About" },
+    { href: "#projects", label: "Work" },
     { href: "#contact", label: "Contact" },
 ];
 
 /* ── Scramble nav link ───────────────────────────────────────────────────── */
-function ScrambleButton({ label, href }: { label: string; href: string }) {
+function ScrambleButton({
+    label,
+    href,
+    onNavigate
+}: {
+    label: string;
+    href: string;
+    onNavigate?: (href: string) => void;
+}) {
     const [text, setText] = useState(label.toUpperCase());
     const [hovered, setHovered] = useState(false);
     const iRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -44,8 +51,18 @@ function ScrambleButton({ label, href }: { label: string; href: string }) {
 
     const handleClick = (e: React.MouseEvent) => {
         e.preventDefault();
-        const el = document.querySelector(href);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        if (onNavigate) {
+            onNavigate(href);
+        } else {
+            const el = document.querySelector(href);
+            // @ts-ignore
+            if (window.lenis) {
+                // @ts-ignore
+                window.lenis.scrollTo(el, { duration: 1.8 });
+            } else if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     };
 
     return (
@@ -58,7 +75,7 @@ function ScrambleButton({ label, href }: { label: string; href: string }) {
                 position: "relative",
                 display: "inline-flex",
                 flexDirection: "column",
-                alignItems: "center",
+                alignItems: "flex-end",
                 textDecoration: "none",
                 cursor: "pointer",
                 color: "var(--text-primary)",
@@ -66,139 +83,198 @@ function ScrambleButton({ label, href }: { label: string; href: string }) {
         >
             <span style={{
                 fontFamily: "var(--font-mono)",
-                fontSize: "0.68rem",
-                letterSpacing: "0.2em",
-                fontWeight: 500,
+                fontSize: "0.75rem",
+                letterSpacing: "0.15em",
+                fontWeight: 600,
                 display: "block",
                 color: hovered ? "var(--accent)" : "var(--text-primary)",
                 transition: "color 0.2s ease",
             }}>
                 {text}
             </span>
-            {/* Underline draw */}
             <motion.span
+                initial={{ scaleX: 0 }}
                 animate={{ scaleX: hovered ? 1 : 0 }}
                 transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                 style={{
                     display: "block",
-                    height: "1.5px",
+                    height: "1px",
                     width: "100%",
                     background: "var(--accent)",
-                    transformOrigin: "left",
-                    marginTop: "2px",
+                    transformOrigin: "right",
+                    marginTop: "1px",
                 }}
             />
         </a>
     );
 }
 
-/* ── Sun/Moon toggle ─────────────────────────────────────────────────────── */
+/* ── Minimal Toggle ──────────────────────────────────────────────────────── */
 function ThemeToggle() {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     useEffect(() => setMounted(true), []);
-    if (!mounted) return <div style={{ width: 34, height: 34 }} />;
+    if (!mounted) return <div style={{ width: 24, height: 24 }} />;
     const dark = theme === "dark";
     return (
-        <motion.button
-            whileTap={{ scale: 0.85 }}
+        <button
             onClick={() => setTheme(dark ? "light" : "dark")}
             aria-label="Toggle theme"
             style={{
                 background: "none",
-                border: "1.5px solid var(--border)",
+                border: "none",
                 cursor: "pointer",
-                width: 34,
-                height: 34,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                padding: "8px 0",
                 color: "var(--text-primary)",
-                flexShrink: 0,
-                transition: "border-color 0.3s, color 0.3s",
+                opacity: 0.5,
+                fontSize: "10px",
+                fontFamily: "var(--font-mono)",
+                textTransform: "uppercase",
+                letterSpacing: "0.1em"
             }}
         >
-            <AnimatePresence mode="wait">
-                {dark ? (
-                    <motion.svg key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.22 }} width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
-                        <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                    </motion.svg>
-                ) : (
-                    <motion.svg key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.22 }} width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                    </motion.svg>
-                )}
-            </AnimatePresence>
-        </motion.button>
+            {dark ? "LIGHT" : "DARK"}
+        </button>
     );
 }
 
 /* ── Navigation ──────────────────────────────────────────────────────────── */
 export default function Navigation() {
-    const [scrolled, setScrolled] = useState(false);
     const [open, setOpen] = useState(false);
 
-    useEffect(() => {
-        const fn = () => setScrolled(window.scrollY > 60);
-        window.addEventListener("scroll", fn, { passive: true });
-        return () => window.removeEventListener("scroll", fn);
-    }, []);
-
-    const scrollTo = (href: string) => {
+    const handleNavigate = (href: string) => {
         setOpen(false);
         const el = document.querySelector(href);
-        if (el) el.scrollIntoView({ behavior: "smooth" });
+        if (el) {
+            // @ts-ignore
+            if (window.lenis) {
+                // @ts-ignore
+                window.lenis.scrollTo(el, { duration: 1.8 });
+            } else {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
+        }
     };
 
     return (
         <>
             <header style={{
-                position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-                height: "64px",
-                padding: "0 var(--px)",
-                display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1.5rem",
-                background: scrolled ? "var(--nav-blur)" : "transparent",
-                backdropFilter: scrolled ? "blur(14px)" : "none",
-                borderBottom: scrolled ? "1px solid var(--border)" : "1px solid transparent",
-                transition: "background 0.35s ease, border-color 0.35s ease",
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 100,
+                padding: "clamp(1.5rem, 3vw, 2.5rem) var(--px)",
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                pointerEvents: "none",
             }}>
                 {/* Logo */}
-                <a href="#hero" onClick={e => { e.preventDefault(); scrollTo("#hero"); }} style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: "1.3rem", letterSpacing: "-0.02em", color: "var(--text-primary)", textDecoration: "none" }}>
+                <a
+                    href="#hero"
+                    onClick={e => { e.preventDefault(); handleNavigate("#hero"); }}
+                    style={{
+                        fontFamily: "var(--font-display)",
+                        fontWeight: 700,
+                        fontSize: "1.2rem",
+                        letterSpacing: "-0.02em",
+                        color: "var(--text-primary)",
+                        textDecoration: "none",
+                        pointerEvents: "auto"
+                    }}
+                >
                     ARK<span style={{ color: "var(--accent)" }}>.</span>
                 </a>
 
-                {/* Desktop links + toggle */}
-                <div className="hidden md:flex" style={{ alignItems: "center", gap: "2.5rem" }}>
-                    <nav style={{ display: "flex", gap: "2.5rem" }}>
-                        {NAV_LINKS.map(l => <ScrambleButton key={l.href} {...l} />)}
-                    </nav>
-                    <ThemeToggle />
-                </div>
-
-                {/* Mobile right */}
-                <div className="md:hidden" style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-                    <ThemeToggle />
-                    <button onClick={() => setOpen(o => !o)} aria-label="Toggle menu" style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: "5px", padding: "4px", zIndex: 200 }}>
-                        {[0, 1, 2].map(i => (
-                            <motion.span key={i} animate={{ rotate: open && i !== 1 ? (i === 0 ? 45 : -45) : 0, y: open && i !== 1 ? (i === 0 ? 7 : -7) : 0, opacity: open && i === 1 ? 0 : 1 }} style={{ display: "block", width: 24, height: 1.5, background: open ? "#fff" : "var(--text-primary)", transformOrigin: "center" }} transition={{ duration: 0.25 }} />
+                {/* Vertical Stack - Top Right */}
+                <div style={{ pointerEvents: "auto" }}>
+                    {/* Desktop View (Using JS for visibility to avoid inline-style conflicts with Tailwind) */}
+                    <div className="hidden md:flex" style={{ flexDirection: "column", alignItems: "flex-end", gap: "0.4rem" }}>
+                        {NAV_LINKS.map(l => (
+                            <ScrambleButton
+                                key={l.href}
+                                label={l.label}
+                                href={l.href}
+                                onNavigate={handleNavigate}
+                            />
                         ))}
-                    </button>
+                        <ThemeToggle />
+                    </div>
+
+                    {/* Mobile Menu Trigger */}
+                    <div className="md:hidden">
+                        <button
+                            onClick={() => setOpen(o => !o)}
+                            aria-label="Toggle menu"
+                            style={{
+                                background: "none",
+                                border: "none",
+                                cursor: "pointer",
+                                padding: "4px"
+                            }}
+                        >
+                            <div style={{ width: 20, height: 1.5, background: "var(--text-primary)", marginBottom: 4 }} />
+                            <div style={{ width: 20, height: 1.5, background: "var(--text-primary)" }} />
+                        </button>
+                    </div>
                 </div>
             </header>
 
             {/* Mobile overlay */}
             <AnimatePresence>
                 {open && (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }} style={{ position: "fixed", inset: 0, background: "#0A0A0A", zIndex: 90, display: "flex", flexDirection: "column", justifyContent: "center", padding: "0 var(--px)" }}>
-                        <nav style={{ display: "flex", flexDirection: "column", gap: "2rem" }}>
-                            {NAV_LINKS.map((l, i) => (
-                                <motion.div key={l.href} initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.05 + i * 0.07 }}>
-                                    <a href={l.href} onClick={e => { e.preventDefault(); scrollTo(l.href); }} style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 8vw, 4.5rem)", fontWeight: 700, letterSpacing: "-0.03em", textTransform: "uppercase", color: "white", textDecoration: "none" }}>
-                                        {l.label}
-                                    </a>
-                                </motion.div>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        style={{
+                            position: "fixed",
+                            inset: 0,
+                            background: "var(--bg-dark)",
+                            zIndex: 99,
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            padding: "0 var(--px)"
+                        }}
+                    >
+                        <nav style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                            {NAV_LINKS.map((l) => (
+                                <a
+                                    key={l.href}
+                                    href={l.href}
+                                    onClick={e => { e.preventDefault(); handleNavigate(l.href); }}
+                                    style={{
+                                        fontFamily: "var(--font-display)",
+                                        fontSize: "3rem",
+                                        fontWeight: 700,
+                                        textTransform: "uppercase",
+                                        color: "#F5F5F0",
+                                        textDecoration: "none"
+                                    }}
+                                >
+                                    {l.label}
+                                </a>
                             ))}
+                            <div style={{ marginTop: "2rem" }}>
+                                <ThemeToggle />
+                            </div>
                         </nav>
+                        <button
+                            onClick={() => setOpen(false)}
+                            style={{
+                                position: "absolute",
+                                top: "var(--px)",
+                                right: "var(--px)",
+                                background: "none",
+                                border: "none",
+                                color: "white",
+                                fontSize: "1.5rem"
+                            }}
+                        >
+                            ✕
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
