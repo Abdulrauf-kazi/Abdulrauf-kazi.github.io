@@ -1,35 +1,26 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
 import Navigation from "./components/Navigation";
 import SmoothScroll from "./components/SmoothScroll";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 
 export const metadata: Metadata = {
   title: "Abdulrauf Kazi — Developer & Designer",
-  description:
-    "Portfolio of Abdulrauf Kazi — BTech CSE student building thoughtful digital products, from performant UIs to well-structured backends.",
-  keywords: ["developer", "designer", "portfolio", "Next.js", "React", "TypeScript"],
-  authors: [{ name: "Abdulrauf Kazi" }],
-  openGraph: {
-    title: "Abdulrauf Kazi — Developer & Designer",
-    description: "BTech CSE student building thoughtful digital products.",
-    type: "website",
-  },
+  description: "Portfolio of Abdulrauf Kazi — BTech CSE student building thoughtful digital products.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
-        <SmoothScroll>
-          <ScrollProgressBar />
-          <Navigation />
-          {children}
-        </SmoothScroll>
+      <body>
+        <ThemeProvider>
+          <SmoothScroll>
+            <ScrollProgressBar />
+            <Navigation />
+            {children}
+          </SmoothScroll>
+        </ThemeProvider>
       </body>
     </html>
   );
