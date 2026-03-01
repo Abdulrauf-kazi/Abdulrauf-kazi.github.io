@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap");
 @import "tailwindcss";
 
-/* ── Design Tokens — Light ────────────────────────────────────────────────── */
 :root {
   --bg: #F5F5F0;
   --bg-dark: #0A0A0A;
@@ -49,14 +48,16 @@
 html {
   -webkit-font-smoothing: antialiased;
   scroll-behavior: smooth;
+  background-color: var(--bg);
+  color: var(--text-primary);
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
   color: var(--text-primary);
   font-family: var(--font-body);
   overflow-x: hidden;
-  transition: background 0.35s ease, color 0.35s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 ::selection {
