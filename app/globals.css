@@ -3,14 +3,14 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #F5F5F0;
+  --bg: #FFF2E5;
   --bg-dark: #0A0A0A;
-  --bg-card: #ECECEA;
+  --bg-card: #F7E9DE;
   --accent: #FF3B00;
   --text-primary: #0A0A0A;
   --text-secondary: #666666;
-  --border: #E0E0E0;
-  --nav-blur: rgba(245, 245, 240, 0.92);
+  --border: #E8DCD0;
+  --nav-blur: rgba(255, 242, 229, 0.92);
 
   --font-display: 'Space Grotesk', sans-serif;
   --font-body: 'Inter', sans-serif;
