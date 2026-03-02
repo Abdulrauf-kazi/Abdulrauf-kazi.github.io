@@ -73,7 +73,7 @@ function BentoCard({
       { clipPath: "inset(0 100% 0 0)" },
       {
         clipPath: "inset(0 0% 0 0)",
-        duration: 1.0, ease: "power3.out",
+        duration: 2.0, ease: "power3.out",
         scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play none none none" },
       }
     );
@@ -183,7 +183,7 @@ function Reveal({ children, delay = 0, as: T = "span", className = "", style = {
             style={{ display: "inline-block" }}
             initial={{ y: "110%" }}
             animate={inView ? { y: "0%" } : {}}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: delay + i * 0.1 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: delay + i * 0.2 }}
           >{w}</motion.span>
           {i < words.length - 1 ? "\u00A0" : ""}
         </span>
@@ -225,7 +225,7 @@ export default function Home() {
         <motion.div style={{ y: heroY }}>
           {/* Label */}
           <motion.p
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.2 }}
             style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", letterSpacing: "0.28em", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "2.5rem" }}
           >
             Abdulrauf Kazi · Portfolio 2026
@@ -235,7 +235,7 @@ export default function Home() {
           <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(4rem, 12vw, 11rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "3rem" }}>
             {[{ text: "Abdulrauf", color: "var(--text-primary)" }, { text: "Kazi", color: "var(--accent)" }].map(({ text, color }, li) => (
               <span key={li} style={{ display: "block", overflow: "hidden" }}>
-                <motion.span style={{ display: "block", color }} initial={{ y: "110%" }} animate={{ y: "0%" }} transition={{ duration: 0.9, delay: 0.1 + li * 0.12, ease: [0.16, 1, 0.3, 1] }}>
+                <motion.span style={{ display: "block", color }} initial={{ y: "110%" }} animate={{ y: "0%" }} transition={{ duration: 1.8, delay: 0.2 + li * 0.25, ease: [0.16, 1, 0.3, 1] }}>
                   {text}
                 </motion.span>
               </span>
@@ -244,7 +244,7 @@ export default function Home() {
 
           {/* Tagline row */}
           <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", alignItems: "center" }}>
-            <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} style={{ fontFamily: "var(--font-body)", fontSize: "clamp(0.9rem, 1.5vw, 1.15rem)", color: "var(--text-secondary)", maxWidth: "42ch", lineHeight: 1.7 }}>
+            <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 1.2 }} style={{ fontFamily: "var(--font-body)", fontSize: "clamp(0.9rem, 1.5vw, 1.15rem)", color: "var(--text-secondary)", maxWidth: "42ch", lineHeight: 1.7 }}>
               Developer · Designer · BTech CSE student building thoughtful digital products.
             </motion.p>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.7, duration: 0.5 }} style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
@@ -320,10 +320,10 @@ export default function Home() {
             <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1, textTransform: "uppercase", marginBottom: "2.5rem" }}>
               I Build Things.
             </Reveal>
-            <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", lineHeight: 1.8, color: "var(--text-secondary)", marginBottom: "1.5rem", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
+            <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.4 }} style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", lineHeight: 1.8, color: "var(--text-secondary)", marginBottom: "1.5rem", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
               I&apos;m a computer science student passionate about building thoughtful digital products — from clean, performant UIs to well-structured backends.
             </motion.p>
-            <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1 }} style={{ fontFamily: "var(--font-body)", fontSize: "1rem", lineHeight: 1.8, color: "var(--text-secondary)", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
+            <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.4, delay: 0.2 }} style={{ fontFamily: "var(--font-body)", fontSize: "1rem", lineHeight: 1.8, color: "var(--text-secondary)", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
               I enjoy the whole process: sketching ideas, writing code that scales, and obsessing over the small details that make software feel polished and alive.
             </motion.p>
             <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.25, duration: 0.5 }} style={{ marginTop: "2rem" }}>

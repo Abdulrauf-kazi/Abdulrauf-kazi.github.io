@@ -33,9 +33,9 @@ export default function TextReveal({
                         initial={prefersReduced ? false : { y: "110%" }}
                         animate={isInView || prefersReduced ? { y: "0%" } : { y: "110%" }}
                         transition={{
-                            duration: 0.7,
+                            duration: 1.4,
                             ease: [0.16, 1, 0.3, 1],
-                            delay: delay + i * 0.12,
+                            delay: delay + i * 0.2,
                         }}
                         onAnimationComplete={() => {
                             if (containerRef.current) {
