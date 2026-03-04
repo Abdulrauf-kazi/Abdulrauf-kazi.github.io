@@ -77,7 +77,7 @@ function BentoCard({
       {
         clipPath: "inset(0 0% 0 0)",
         duration: 2.0, ease: "power3.out",
-        scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play none none none" },
+        scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play reverse play reverse" },
       }
     );
   }, { scope: ref });
@@ -171,7 +171,7 @@ function Reveal({ children, delay = 0, as: T = "span", className = "", style = {
   className?: string; style?: React.CSSProperties;
 }) {
   const ref = useRef<HTMLElement | null>(null);
-  const inView = useInView(ref as React.RefObject<Element>, { once: true, margin: "-10%" });
+  const inView = useInView(ref as React.RefObject<Element>, { once: false, margin: "-10%" });
   const words = children.split(" ");
   return (
     // @ts-expect-error dynamic tag ref
@@ -323,11 +323,6 @@ export default function Home() {
               </motion.div>
             </div>
           </motion.div>
-
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.6 }} style={{ position: "absolute", right: "var(--px)", bottom: "6rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--text-secondary)", writingMode: "vertical-rl" }}>Scroll</span>
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }} style={{ width: 1, height: 48, background: "var(--text-secondary)" }} />
-          </motion.div>
         </section>
 
         <section id="projects" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)" }}>
@@ -368,13 +363,13 @@ export default function Home() {
               <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 5vw, 4rem)", fontWeight: 700, letterSpacing: "-0.03em", lineHeight: 1, textTransform: "uppercase", marginBottom: "2.5rem" }}>
                 I Build Things.
               </Reveal>
-              <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.4 }} style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", lineHeight: 1.8, color: "var(--text-secondary)", marginBottom: "1.5rem", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
+              <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 1.4 }} style={{ fontFamily: "var(--font-body)", fontSize: "1.05rem", lineHeight: 1.8, color: "var(--text-secondary)", marginBottom: "1.5rem", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
                 I&apos;m a computer science student passionate about building thoughtful digital products — from clean, performant UIs to well-structured backends.
               </motion.p>
-              <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1.4, delay: 0.2 }} style={{ fontFamily: "var(--font-body)", fontSize: "1rem", lineHeight: 1.8, color: "var(--text-secondary)", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
+              <motion.p initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false }} transition={{ duration: 1.4, delay: 0.2 }} style={{ fontFamily: "var(--font-body)", fontSize: "1rem", lineHeight: 1.8, color: "var(--text-secondary)", paddingLeft: "1.5rem", borderLeft: "2px solid var(--border)" }}>
                 I enjoy the whole process: sketching ideas, writing code that scales, and obsessing over the small details that make software feel polished and alive.
               </motion.p>
-              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: 0.25, duration: 0.5 }} style={{ marginTop: "2rem" }}>
+              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: false }} transition={{ delay: 0.25, duration: 0.5 }} style={{ marginTop: "2rem" }}>
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent)", padding: "0.4rem 0.9rem", border: "1px solid var(--accent)" }}>
                   Currently Learning: AI/ML Engineering
                 </span>
@@ -388,7 +383,7 @@ export default function Home() {
                   <motion.div
                     key={s.cat}
                     initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }} transition={{ delay: gi * 0.07, duration: 0.5 }}
+                    viewport={{ once: false }} transition={{ delay: gi * 0.07, duration: 0.5 }}
                     style={{ padding: "1.5rem", background: "var(--bg)" }}
                   >
                     <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--accent)", marginBottom: "1rem" }}>{s.cat}</p>

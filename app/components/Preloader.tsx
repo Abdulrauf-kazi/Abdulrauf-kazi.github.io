@@ -60,26 +60,43 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
 
   /* ── Progress timer ─────────────────────────────────────────────────── */
   useEffect(() => {
-    const totalDuration = 4000;
-    const intervalTime = 40;
-    const totalSteps = totalDuration / intervalTime;
-    let currentStep = 0;
+    // Smooth eased progress: pause at 0, accelerate, decelerate, pause at 100
+    const HOLD_START = 200;   // ms pause at 0%
+    const RAMP_DURATION = 1200; // ms for 0→100 with easing
+    const HOLD_END = 300;     // ms pause at 100%
+    let start: number | null = null;
+    let raf: number;
 
-    const timer = setInterval(() => {
-      currentStep++;
-      const next = Math.min(100, Math.floor((currentStep / totalSteps) * 100));
-      setProgress(next);
+    const tick = (ts: number) => {
+      if (!start) start = ts;
+      const elapsed = ts - start;
 
-      if (next >= 100) {
-        clearInterval(timer);
-        setTimeout(() => {
-          setIsExiting(true);
-          setTimeout(onComplete, 1500);
-        }, 500);
+      if (elapsed < HOLD_START) {
+        // hold at 0 %
+        setProgress(0);
+      } else if (elapsed < HOLD_START + RAMP_DURATION) {
+        // ease-in-out ramp
+        const t = (elapsed - HOLD_START) / RAMP_DURATION; // 0→1 linear
+        // cubic ease-in-out
+        const eased = t < 0.5
+          ? 4 * t * t * t
+          : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        setProgress(Math.min(100, Math.round(eased * 100)));
+      } else if (elapsed < HOLD_START + RAMP_DURATION + HOLD_END) {
+        // hold at 100 %
+        setProgress(100);
+      } else {
+        // done
+        setIsExiting(true);
+        setTimeout(onComplete, 1200);
+        return;
       }
-    }, intervalTime);
 
-    return () => clearInterval(timer);
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [onComplete]);
 
   return (
