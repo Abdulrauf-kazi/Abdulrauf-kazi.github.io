@@ -247,12 +247,9 @@ export default function Home() {
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         style={{ background: "var(--bg)", color: "var(--text-primary)" }}
       >
-        <section id="hero" ref={heroRef} style={{ minHeight: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 var(--px) 6rem", paddingTop: "64px", borderBottom: "1px solid var(--border)", overflow: "hidden", position: "relative" }}>
-          {/* Hero background image */}
-          <div style={{ position: "absolute", inset: 0, zIndex: 0, backgroundImage: "url('/hero-bg.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} />
-          <div style={{ position: "absolute", inset: 0, zIndex: 1, background: "linear-gradient(to bottom, rgba(168,181,168,0.45) 0%, rgba(168,181,168,0.75) 100%)" }} />
+        <section id="hero" ref={heroRef} style={{ minHeight: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 var(--px) 6rem", paddingTop: "64px", borderBottom: "1px solid var(--border)", overflow: "hidden" }}>
           <motion.div 
-            style={{ y: heroY, position: "relative", zIndex: 2 }}
+            style={{ y: heroY }}
             initial="hidden"
             animate={!loading ? "visible" : "hidden"}
             variants={{
@@ -327,7 +324,7 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.6 }} style={{ position: "absolute", right: "var(--px)", bottom: "6rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem", zIndex: 2 }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.6 }} style={{ position: "absolute", right: "var(--px)", bottom: "6rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
             <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--text-secondary)", writingMode: "vertical-rl" }}>Scroll</span>
             <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }} style={{ width: 1, height: 48, background: "var(--text-secondary)" }} />
           </motion.div>

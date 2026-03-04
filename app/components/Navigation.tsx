@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
-import { useTheme } from "next-themes";
+import { useState, useRef, useCallback } from "react";
+
 import { motion, AnimatePresence } from "framer-motion";
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -109,35 +109,6 @@ function ScrambleButton({
     );
 }
 
-/* ── Minimal Toggle ──────────────────────────────────────────────────────── */
-function ThemeToggle() {
-    const { theme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
-    useEffect(() => setMounted(true), []);
-    if (!mounted) return <div style={{ width: 24, height: 24 }} />;
-    const dark = theme === "dark";
-    return (
-        <button
-            onClick={() => setTheme(dark ? "light" : "dark")}
-            aria-label="Toggle theme"
-            style={{
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                padding: "8px 0",
-                color: "var(--text-primary)",
-                opacity: 0.5,
-                fontSize: "10px",
-                fontFamily: "var(--font-mono)",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em"
-            }}
-        >
-            {dark ? "LIGHT" : "DARK"}
-        </button>
-    );
-}
-
 /* ── Navigation ──────────────────────────────────────────────────────────── */
 export default function Navigation() {
     const [open, setOpen] = useState(false);
@@ -199,7 +170,6 @@ export default function Navigation() {
                                 onNavigate={handleNavigate}
                             />
                         ))}
-                        <ThemeToggle />
                     </div>
 
                     {/* Mobile Menu Trigger */}
@@ -231,7 +201,7 @@ export default function Navigation() {
                         style={{
                             position: "fixed",
                             inset: 0,
-                            background: "var(--bg-dark)",
+                            background: "var(--bg)",
                             zIndex: 99,
                             display: "flex",
                             flexDirection: "column",
@@ -250,16 +220,13 @@ export default function Navigation() {
                                         fontSize: "3rem",
                                         fontWeight: 700,
                                         textTransform: "uppercase",
-                                        color: "#F5F5F0",
+                                        color: "var(--text-primary)",
                                         textDecoration: "none"
                                     }}
                                 >
                                     {l.label}
                                 </a>
                             ))}
-                            <div style={{ marginTop: "2rem" }}>
-                                <ThemeToggle />
-                            </div>
                         </nav>
                         <button
                             onClick={() => setOpen(false)}
@@ -269,7 +236,7 @@ export default function Navigation() {
                                 right: "var(--px)",
                                 background: "none",
                                 border: "none",
-                                color: "white",
+                                color: "var(--text-primary)",
                                 fontSize: "1.5rem"
                             }}
                         >

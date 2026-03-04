@@ -20,17 +20,6 @@
   --section-py: clamp(5rem, 10vw, 10rem);
 }
 
-/* ── Dark Theme ──────────────────────────────────────────────────────────── */
-.dark {
-  --bg: #0A0A0A;
-  --bg-dark: #111111;
-  --bg-card: #141414;
-  --text-primary: #F5F5F0;
-  --text-secondary: #777777;
-  --border: #2A2A2A;
-  --nav-blur: rgba(10, 10, 10, 0.92);
-}
-
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--text-primary);
