@@ -81,7 +81,7 @@ export default function ContactForm() {
                                 onFocus={() => setFocusedField("email")}
                                 onBlur={() => setFocusedField(null)}
                                 style={fieldStyle("email")}
-                                placeholder="hello@example.com"
+                                placeholder="kaziabdulrauf15@gmail.com"
                             />
                         </div>
                     </div>

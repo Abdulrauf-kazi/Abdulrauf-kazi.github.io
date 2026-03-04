@@ -16,8 +16,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeProvider>
           <SmoothScroll>
-            <ScrollProgressBar />
-            <Navigation />
             {children}
           </SmoothScroll>
         </ThemeProvider>
