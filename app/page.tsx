@@ -9,6 +9,7 @@ import ContactForm from "./components/ContactForm";
 import Navigation from "./components/Navigation";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import Preloader from "./components/Preloader";
+import HeroVisual from "./components/HeroVisual";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -231,14 +232,17 @@ export default function Home() {
       <Preloader onComplete={() => setLoading(false)} />
       
       {!loading && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-        >
-          <ScrollProgressBar />
-          <Navigation />
-        </motion.div>
+        <>
+          <HeroVisual />
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+          >
+            <ScrollProgressBar />
+            <Navigation />
+          </motion.div>
+        </>
       )}
 
       <motion.main 
