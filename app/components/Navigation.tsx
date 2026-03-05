@@ -56,7 +56,11 @@ function ScrambleButton({
             onNavigate(href);
         } else {
             const el = document.querySelector(href);
-            if (el) {
+            // @ts-ignore
+            if (window.lenis) {
+                // @ts-ignore
+                window.lenis.scrollTo(el, { duration: 1.8 });
+            } else if (el) {
                 el.scrollIntoView({ behavior: "smooth" });
             }
         }
@@ -114,7 +118,13 @@ export default function Navigation() {
         setOpen(false);
         const el = document.querySelector(href);
         if (el) {
-            el.scrollIntoView({ behavior: "smooth" });
+            // @ts-ignore
+            if (window.lenis) {
+                // @ts-ignore
+                window.lenis.scrollTo(el, { duration: 1.8 });
+            } else {
+                el.scrollIntoView({ behavior: "smooth" });
+            }
         }
     };
 

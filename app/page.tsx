@@ -386,10 +386,10 @@ export default function Home() {
           `}</style>
         </section>
 
-        <section id="contact" style={{ padding: "clamp(2rem, 5vw, 4rem) var(--px)", background: "var(--bg-dark)", color: "white" }}>
-          <div style={{ maxWidth: "640px" }}>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#888", marginBottom: "1.2rem" }}>Get In Touch</p>
-            <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "white", marginBottom: "2.5rem" }}>
+        <section id="contact" style={{ padding: "clamp(1.5rem, 4vw, 3rem) var(--px)", background: "var(--bg-dark)", color: "white" }}>
+          <div style={{ maxWidth: "580px" }}>
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#888", marginBottom: "0.8rem" }}>Get In Touch</p>
+            <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.8rem, 4vw, 3rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "white", marginBottom: "1.8rem" }}>
               Start a Conversation.
             </Reveal>
             <style>{`
