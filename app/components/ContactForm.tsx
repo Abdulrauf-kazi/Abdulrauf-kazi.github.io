@@ -30,9 +30,9 @@ export default function ContactForm() {
         background: "transparent",
         border: "none",
         borderBottom: `1px solid ${focusedField === field ? "var(--accent)" : "var(--border)"}`,
-        padding: "0.75rem 0",
+        padding: "0.5rem 0",
         fontFamily: "var(--font-body)",
-        fontSize: "0.95rem",
+        fontSize: "0.88rem",
         color: "var(--text-primary)",
         outline: "none",
         transition: "border-color 0.3s ease",
@@ -57,9 +57,9 @@ export default function ContactForm() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, y: -20 }}
                     onSubmit={handleSubmit}
-                    style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}
+                    style={{ display: "flex", flexDirection: "column", gap: "1.8rem" }}
                 >
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem" }}>
                         <div>
                             <label style={labelStyle}>Your Name</label>
                             <input
@@ -93,7 +93,7 @@ export default function ContactForm() {
                             onChange={(e) => setForm({ ...form, message: e.target.value })}
                             onFocus={() => setFocusedField("message")}
                             onBlur={() => setFocusedField(null)}
-                            rows={4}
+                            rows={3}
                             style={{
                                 ...fieldStyle("message"),
                                 resize: "none",
@@ -132,10 +132,10 @@ export default function ContactForm() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.6 }}
                     style={{
-                        padding: "4rem 0",
+                        padding: "2rem 0",
                         display: "flex",
                         flexDirection: "column",
-                        gap: "1rem",
+                        gap: "0.8rem",
                     }}
                 >
                     <p

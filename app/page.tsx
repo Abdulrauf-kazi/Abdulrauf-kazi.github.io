@@ -10,6 +10,7 @@ import Navigation from "./components/Navigation";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import Preloader from "./components/Preloader";
 import HeroVisual from "./components/HeroVisual";
+import { Github, Linkedin, Mail as MailIcon } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -78,7 +79,11 @@ function BentoCard({
       {
         clipPath: "inset(0 0% 0 0)",
         duration: 2.0, ease: "power3.out",
-        scrollTrigger: { trigger: ref.current, start: "top 90%", toggleActions: "play reverse play reverse" },
+        scrollTrigger: { 
+          trigger: ref.current, 
+          start: "top 90%", 
+          toggleActions: "play reverse play reverse" 
+        },
       }
     );
   }, { scope: ref });
@@ -196,36 +201,8 @@ function Reveal({ children, delay = 0, as: T = "span", className = "", style = {
 export default function Home() {
   const [loading, setLoading] = useState(true);
   const heroRef = useRef<HTMLElement>(null);
-  const skewRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 600], [0, -100]);
-
-  useEffect(() => {
-    if (loading) {
-      // @ts-ignore
-      window.lenis?.stop();
-    } else {
-      // @ts-ignore
-      window.lenis?.start();
-    }
-  }, [loading]);
-
-  useGSAP(() => {
-    if (!skewRef.current) return;
-    let skew = 0;
-    let last = 0;
-    ScrollTrigger.create({
-      onUpdate(self) {
-        const v = (self.getVelocity() / 300) * -1;
-        skew = Math.max(-12, Math.min(12, v));
-        skewRef.current!.style.transform = `skewY(${skew}deg)`;
-        if (last) clearTimeout(last);
-        last = window.setTimeout(() => {
-          if (skewRef.current) skewRef.current.style.transform = "skewY(0deg)";
-        }, 600) as unknown as number;
-      },
-    });
-  }, { scope: skewRef });
 
   return (
     <>
@@ -255,7 +232,8 @@ export default function Home() {
           <motion.div 
             style={{ y: heroY }}
             initial="hidden"
-            animate={!loading ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.1 }}
             variants={{
               visible: {
                 transition: {
@@ -408,10 +386,10 @@ export default function Home() {
           `}</style>
         </section>
 
-        <section id="contact" style={{ padding: "var(--section-py) var(--px)", background: "var(--bg-dark)", color: "white" }}>
-          <div style={{ maxWidth: "760px" }}>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>Get In Touch</p>
-            <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 6vw, 5rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "white", marginBottom: "4rem" }}>
+        <section id="contact" style={{ padding: "clamp(2rem, 5vw, 4rem) var(--px)", background: "var(--bg-dark)", color: "white" }}>
+          <div style={{ maxWidth: "640px" }}>
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#888", marginBottom: "1.2rem" }}>Get In Touch</p>
+            <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2rem, 4.5vw, 3.5rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "white", marginBottom: "2.5rem" }}>
               Start a Conversation.
             </Reveal>
             <style>{`
@@ -426,21 +404,46 @@ export default function Home() {
           </div>
         </section>
 
-        <footer style={{ padding: "2.5rem var(--px)", background: "var(--bg-dark)", borderTop: "1px solid #1a1a1a", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
+        <footer style={{ padding: "2rem var(--px)", background: "var(--bg-dark)", borderTop: "1px solid #1a1a1a", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
           <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#444" }}>
             © 2026 Abdulrauf Kazi · Hyderabad
           </p>
-          <div style={{ display: "flex", gap: "2rem" }}>
-            {[
-              { label: "GitHub", href: "https://github.com/Abdulrauf-kazi" },
-              { label: "LinkedIn", href: "#" },
-              { label: "Email", href: "mailto:hello@example.com" },
-            ].map(({ label, href }) => (
-              <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "#555", textDecoration: "none", transition: "color 0.2s" }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = "var(--accent)"}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = "#555"}
-              >{label}</a>
+          <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+            {([
+              { icon: Github, href: "https://github.com/Abdulrauf-kazi", label: "GitHub" },
+              { icon: Linkedin, href: "#", label: "LinkedIn" },
+              { icon: MailIcon, href: "mailto:hello@example.com", label: "Email" },
+            ] as { icon: React.ElementType; href: string; label: string }[]).map(({ icon: Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                aria-label={label}
+                title={label}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 32,
+                  height: 32,
+                  borderRadius: "50%",
+                  border: "1px solid #2a2a2a",
+                  color: "#555",
+                  textDecoration: "none",
+                  transition: "color 0.2s, border-color 0.2s",
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLElement).style.color = "var(--accent)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "var(--accent)";
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLElement).style.color = "#555";
+                  (e.currentTarget as HTMLElement).style.borderColor = "#2a2a2a";
+                }}
+              >
+                <Icon size={14} strokeWidth={1.8} />
+              </a>
             ))}
           </div>
         </footer>

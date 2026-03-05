@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 const NAV_LINKS = [
+    { href: "#hero", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#projects", label: "Work" },
     { href: "#contact", label: "Contact" },
@@ -55,11 +56,7 @@ function ScrambleButton({
             onNavigate(href);
         } else {
             const el = document.querySelector(href);
-            // @ts-ignore
-            if (window.lenis) {
-                // @ts-ignore
-                window.lenis.scrollTo(el, { duration: 1.8 });
-            } else if (el) {
+            if (el) {
                 el.scrollIntoView({ behavior: "smooth" });
             }
         }
@@ -117,13 +114,7 @@ export default function Navigation() {
         setOpen(false);
         const el = document.querySelector(href);
         if (el) {
-            // @ts-ignore
-            if (window.lenis) {
-                // @ts-ignore
-                window.lenis.scrollTo(el, { duration: 1.8 });
-            } else {
-                el.scrollIntoView({ behavior: "smooth" });
-            }
+            el.scrollIntoView({ behavior: "smooth" });
         }
     };
 
