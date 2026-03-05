@@ -249,9 +249,9 @@ export default function Home() {
         initial={{ y: 100, opacity: 0 }}
         animate={!loading ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        style={{ background: "var(--bg)", color: "var(--text-primary)" }}
+        style={{ color: "var(--text-primary)", position: "relative", zIndex: 1 }}
       >
-        <section id="hero" ref={heroRef} style={{ minHeight: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 var(--px) 6rem", paddingTop: "64px", borderBottom: "1px solid var(--border)", overflow: "hidden" }}>
+        <section id="hero" ref={heroRef} style={{ minHeight: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 var(--px) 6rem", paddingTop: "64px", borderBottom: "1px solid var(--border)", overflow: "hidden", background: "transparent" }}>
           <motion.div 
             style={{ y: heroY }}
             initial="hidden"
@@ -329,7 +329,7 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section id="projects" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)" }}>
+        <section id="projects" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)", background: "var(--bg)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4rem", flexWrap: "wrap", gap: "1rem" }}>
             <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 7vw, 6rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase" }}>
               Selected Work
@@ -360,7 +360,7 @@ export default function Home() {
           `}</style>
         </section>
 
-        <section id="about" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)" }}>
+        <section id="about" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)", background: "var(--bg)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
             <div>
               <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--text-secondary)", marginBottom: "2.5rem" }}>About Me</p>
@@ -410,11 +410,17 @@ export default function Home() {
 
         <section id="contact" style={{ padding: "var(--section-py) var(--px)", background: "var(--bg-dark)", color: "white" }}>
           <div style={{ maxWidth: "760px" }}>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#444", marginBottom: "2rem" }}>Get In Touch</p>
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#888", marginBottom: "2rem" }}>Get In Touch</p>
             <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 6vw, 5rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase", color: "white", marginBottom: "4rem" }}>
               Start a Conversation.
             </Reveal>
-            <div style={{ "--text-primary": "white", "--text-secondary": "#888", "--border": "#2a2a2a", "--bg": "#0A0A0A" } as React.CSSProperties}>
+            <style>{`
+              .dark-form input::placeholder,
+              .dark-form textarea::placeholder { color: #555; opacity: 1; }
+              .dark-form input,
+              .dark-form textarea { caret-color: white; }
+            `}</style>
+            <div className="dark-form" style={{ "--text-primary": "white", "--text-secondary": "#888", "--border": "#2a2a2a", "--bg": "#0A0A0A" } as React.CSSProperties}>
               <ContactForm />
             </div>
           </div>

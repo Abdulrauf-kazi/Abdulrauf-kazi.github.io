@@ -207,7 +207,7 @@ export default function HeroVisual() {
       <Canvas
         gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
         dpr={[1, 1.5]}
-        style={{ pointerEvents: "auto" }}
+        style={{ pointerEvents: "none" }}
       >
         <CameraRig />
 
