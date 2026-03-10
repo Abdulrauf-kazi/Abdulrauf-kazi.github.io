@@ -66,19 +66,6 @@ body {
   background: var(--text-primary);
 }
 
-/* ── Word-clip reveal ────────────────────────────────────────────────────── */
-.word-clip {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-
-.word-inner {
-  display: inline-block;
-  will-change: transform;
-}
-
-/* ── Reduced motion ──────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -86,10 +73,5 @@ body {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .word-inner {
-    transform: none !important;
-    opacity: 1 !important;
   }
 }

@@ -415,7 +415,7 @@ export default function Home() {
               { icon: Github, href: "https://github.com/Abdulrauf-kazi", label: "GitHub" },
               { icon: Linkedin, href: "#", label: "LinkedIn" },
               { icon: MailIcon, href: "mailto:hello@example.com", label: "Email" },
-            ] as { icon: React.ElementType; href: string; label: string }[]).map(({ icon: Icon, href, label }) => (
+            ] as { icon: any; href: string; label: string }[]).map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
                 href={href}

@@ -51,7 +51,7 @@ function TopoTerrain() {
   const meshRef = useRef<THREE.Mesh>(null);
   const timeRef = useRef(0);
 
-  const { size, segments } = { size: 160, segments: 200 };
+  const { size, segments } = { size: 160, segments: 120 };
 
   /* Build geometry once */
   const basePositions = useMemo(() => {
@@ -164,6 +164,8 @@ function CameraRig() {
     return () => window.removeEventListener("mousemove", handle);
   }, []);
 
+  const lastViewport = useRef({ w: 0, h: 0 });
+
   useFrame(() => {
     target.current.x += (mouse.current.x - target.current.x) * 0.02;
     target.current.y += (mouse.current.y - target.current.y) * 0.02;
@@ -172,8 +174,12 @@ function CameraRig() {
     camera.position.y = 50 - target.current.y * 4;
     camera.lookAt(0, 0, 0);
 
-    /* Responsive zoom */
-    if ((camera as THREE.OrthographicCamera).zoom !== undefined) {
+    /* Responsive zoom — only update projection matrix when viewport actually changes */
+    if (
+      (camera as THREE.OrthographicCamera).zoom !== undefined &&
+      (lastViewport.current.w !== viewport.width || lastViewport.current.h !== viewport.height)
+    ) {
+      lastViewport.current = { w: viewport.width, h: viewport.height };
       const minDim = Math.min(viewport.width, viewport.height);
       (camera as THREE.OrthographicCamera).zoom = minDim < 600 ? 14 : minDim < 1024 ? 20 : 26;
       camera.updateProjectionMatrix();
