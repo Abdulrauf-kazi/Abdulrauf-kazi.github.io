@@ -309,37 +309,6 @@ export default function Home() {
           </motion.div>
         </section>
 
-        <section id="projects" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)", background: "var(--bg)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4rem", flexWrap: "wrap", gap: "1rem" }}>
-            <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 7vw, 6rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase" }}>
-              Selected Work
-            </Reveal>
-            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-secondary)" }}>
-              {PROJECTS.length} Projects · 2024–2026
-            </p>
-          </div>
-
-          <div id="bento-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: "var(--border)", border: "1px solid var(--border)" }}>
-            <BentoCard p={PROJECTS[0]} gridStyle={{ gridColumn: "span 2", gridRow: "span 2" }} />
-            <BentoCard p={PROJECTS[1]} gridStyle={{ gridRow: "span 2" }} />
-            <BentoCard p={PROJECTS[2]} />
-            <BentoCard p={PROJECTS[3]} gridStyle={{ gridColumn: "span 2" }} />
-            <BentoCard p={PROJECTS[4]} gridStyle={{ gridColumn: "span 3" }} />
-          </div>
-
-          <style>{`
-            @media (max-width: 768px) {
-              #bento-grid > * {
-                grid-column: 1 / -1 !important;
-                grid-row: auto !important;
-              }
-              #bento-grid {
-                grid-template-columns: 1fr !important;
-              }
-            }
-          `}</style>
-        </section>
-
         <section id="about" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)", background: "var(--bg)" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "6rem", alignItems: "start" }}>
             <div>
@@ -384,6 +353,37 @@ export default function Home() {
           <style>{`
             @media (max-width: 768px) {
               #about > div { grid-template-columns: 1fr !important; gap: 3rem !important; }
+            }
+          `}</style>
+        </section>
+
+        <section id="projects" style={{ padding: "var(--section-py) var(--px)", borderBottom: "1px solid var(--border)", background: "var(--bg)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "4rem", flexWrap: "wrap", gap: "1rem" }}>
+            <Reveal as="h2" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.5rem, 7vw, 6rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.95, textTransform: "uppercase" }}>
+              Selected Work
+            </Reveal>
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-secondary)" }}>
+              {PROJECTS.length} Projects · 2024–2026
+            </p>
+          </div>
+
+          <div id="bento-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1px", background: "var(--border)", border: "1px solid var(--border)" }}>
+            <BentoCard p={PROJECTS[0]} gridStyle={{ gridColumn: "span 2", gridRow: "span 2" }} />
+            <BentoCard p={PROJECTS[1]} gridStyle={{ gridRow: "span 2" }} />
+            <BentoCard p={PROJECTS[2]} />
+            <BentoCard p={PROJECTS[3]} gridStyle={{ gridColumn: "span 2" }} />
+            <BentoCard p={PROJECTS[4]} gridStyle={{ gridColumn: "span 3" }} />
+          </div>
+
+          <style>{`
+            @media (max-width: 768px) {
+              #bento-grid > * {
+                grid-column: 1 / -1 !important;
+                grid-row: auto !important;
+              }
+              #bento-grid {
+                grid-template-columns: 1fr !important;
+              }
             }
           `}</style>
         </section>
