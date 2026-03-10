@@ -79,10 +79,10 @@ function BentoCard({
       {
         clipPath: "inset(0 0% 0 0)",
         duration: 2.0, ease: "power3.out",
-        scrollTrigger: { 
-          trigger: ref.current, 
-          start: "top 90%", 
-          toggleActions: "play reverse play reverse" 
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 90%",
+          toggleActions: "play reverse play reverse"
         },
       }
     );
@@ -207,10 +207,12 @@ export default function Home() {
   return (
     <>
       <Preloader onComplete={() => setLoading(false)} />
-      
+
+      {/* HeroVisual mounts immediately — compiles WebGL shaders DURING the preloader so there's zero lag when the preloader exits */}
+      <HeroVisual />
+
       {!loading && (
         <>
-          <HeroVisual />
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -222,14 +224,14 @@ export default function Home() {
         </>
       )}
 
-      <motion.main 
+      <motion.main
         initial={{ y: 100, opacity: 0 }}
         animate={!loading ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         style={{ color: "var(--text-primary)", position: "relative", zIndex: 1 }}
       >
         <section id="hero" ref={heroRef} style={{ minHeight: "100svh", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "0 var(--px) 6rem", paddingTop: "64px", borderBottom: "1px solid var(--border)", overflow: "hidden", background: "transparent" }}>
-          <motion.div 
+          <motion.div
             style={{ y: heroY }}
             initial="hidden"
             whileInView="visible"
@@ -257,8 +259,8 @@ export default function Home() {
             <h1 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(4rem, 12vw, 11rem)", fontWeight: 700, letterSpacing: "-0.04em", lineHeight: 0.9, textTransform: "uppercase", marginBottom: "3rem" }}>
               {[{ text: "Abdulrauf", color: "var(--text-primary)" }, { text: "Kazi", color: "var(--accent)" }].map(({ text, color }, i) => (
                 <span key={i} style={{ display: "block", overflow: "hidden" }}>
-                  <motion.span 
-                    style={{ display: "block", color }} 
+                  <motion.span
+                    style={{ display: "block", color }}
                     variants={{
                       hidden: { y: "110%" },
                       visible: { y: "0%" }
@@ -272,22 +274,22 @@ export default function Home() {
             </h1>
 
             <div style={{ display: "flex", flexWrap: "wrap", gap: "2rem", alignItems: "center" }}>
-              <motion.p 
+              <motion.p
                 variants={{
                   hidden: { opacity: 0, y: 12 },
                   visible: { opacity: 1, y: 0 }
                 }}
-                transition={{ duration: 1.2 }} 
+                transition={{ duration: 1.2 }}
                 style={{ fontFamily: "var(--font-body)", fontSize: "clamp(0.9rem, 1.5vw, 1.15rem)", color: "var(--text-secondary)", maxWidth: "42ch", lineHeight: 1.7 }}
               >
                 Developer · Designer · BTech CSE student building thoughtful digital products.
               </motion.p>
-              <motion.div 
+              <motion.div
                 variants={{
                   hidden: { opacity: 0 },
                   visible: { opacity: 1 }
                 }}
-                transition={{ duration: 0.5 }} 
+                transition={{ duration: 0.5 }}
                 style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
               >
                 <a href="https://github.com/Abdulrauf-kazi" target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-primary)", textDecoration: "none", border: "1px solid var(--border)", padding: "0.65rem 1.4rem", transition: "border-color 0.2s, color 0.2s" }}
