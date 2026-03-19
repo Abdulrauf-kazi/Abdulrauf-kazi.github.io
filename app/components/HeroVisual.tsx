@@ -172,7 +172,7 @@ function ContourRings() {
 
 /* ── Responsive camera setup ──────────────────────────────────────────── */
 function CameraRig() {
-  const { camera, size: viewport } = useThree();
+  const { size: viewport, clock } = useThree();
   const mouse = useRef({ x: 0, y: 0 });
   const target = useRef({ x: 0, y: 0 });
 
