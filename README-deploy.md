@@ -1,34 +1,35 @@
-# GitHub Pages Deployment Guide
+# Final Deployment to abdulrauf-kazi.github.io
 
-Follow these steps to replace your existing GitHub Pages site with this new portfolio.
+Since your site is at the root domain (`https://abdulrauf-kazi.github.io/`), we don't need any extra configuration. Pushing this code will **completely replace** the old site.
 
-### ⚠️ IMPORTANT: Repository Name
-Before deploying, we need to know your repository name (e.g., `portfolio` or `username.github.io`).
-- If your repo is named `username.github.io`, no changes are needed.
-- If it's a project site (e.g., `portfolio`), you MUST add `basePath: '/portfolio'` to `next.config.ts`.
+### Step 1: Initialize Git and Connect to GitHub
+Run these commands in your terminal:
 
----
+```bash
+# 1. Initialize git (if not already done)
+git init
 
-### Step 1: Push your code to GitHub
-If you haven't pushed this code to a GitHub repository yet, run these commands:
-1. `git add .`
-2. `git commit -m "chore: setup portfolio and deployment"`
-3. `git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git` (Skip if already added)
-4. `git push -u origin main`
+# 2. Add your repository as the remote (assuming same repo)
+# If this errors, it's already added.
+git remote add origin https://github.com/abdulrauf-kazi/abdulrauf-kazi.github.io.git
 
-### Step 2: Configure GitHub Actions
-1. Go to your repository on GitHub.
-2. Click on **Settings** > **Pages**.
+# 3. Stage all new portfolio files
+git add .
+
+# 4. Commit changes
+git commit -m "feat: replace old site with new optimized portfolio"
+
+# 5. FORCE push to main (to overwrite the old site completely)
+git push -u origin main --force
+```
+
+### Step 2: Set GitHub Actions as the Source
+After pushing, do this on GitHub.com:
+1. Go to your **abdulrauf-kazi.github.io** repository.
+2. Click **Settings** > **Pages**.
 3. Under **Build and deployment** > **Source**, select **GitHub Actions**.
 
-### Step 3: Trigger the Build
-The deployment workflow I created will automatically run whenever you push to the `main` branch. 
-- You can see its progress under the **Actions** tab on GitHub.
-- Once it turns green, your new site will be live!
-
----
-
-### How to "Remove" the Old Site
-By following these steps, you are **overwriting** the code in your repository. GitHub Pages will simply serve whatever is in the most recent successful build.
-- If the old site was in a different branch (like `gh-pages`), the new "GitHub Actions" source will ignore that old branch and use the new build instead.
-- If the old site was in a separate repository, you must either delete that repository or change its GitHub Pages settings to "None."
+### Step 3: Monitor the Build
+- Go to the **Actions** tab.
+- Look for the "Deploy to GitHub Pages" workflow.
+- Once it finishes, refresh `https://abdulrauf-kazi.github.io/`. Your new site is live!
