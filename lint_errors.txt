@@ -1,0 +1,53 @@
+
+> portfolio@0.1.0 lint D:\Projects\portfolio
+> eslint
+
+
+D:\Projects\portfolio\app\components\ContactForm.tsx
+  3:20  warning  'useRef' is defined but never used  @typescript-eslint/no-unused-vars
+
+D:\Projects\portfolio\app\components\HeroVisual.tsx
+  111:6  warning  React Hook useMemo has missing dependencies: 'segments' and 'size'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react-hooks/exhaustive-deps
+  195:5  error    Error: This value cannot be modified
+
+Modifying a value returned from a hook is not allowed. Consider moving the modification into the hook where the value is constructed.
+
+D:\Projects\portfolio\app\components\HeroVisual.tsx:195:5
+  193 |     target.current.y += (mouse.current.y - target.current.y) * 0.02;
+  194 |
+> 195 |     camera.position.x = 50 + target.current.x * 6;
+      |     ^^^^^^^^^^^^^^^ `camera` cannot be modified
+  196 |     camera.position.y = 50 - target.current.y * 4;
+  197 |     camera.lookAt(0, 0, 0);
+  198 |                                                                                                           react-hooks/immutability
+  206:8  error    Error: This value cannot be modified
+
+Modifying a value returned from a hook is not allowed. Consider moving the modification into the hook where the value is constructed.
+
+D:\Projects\portfolio\app\components\HeroVisual.tsx:206:8
+  204 |       lastViewport.current = { w: viewport.width, h: viewport.height };
+  205 |       const minDim = Math.min(viewport.width, viewport.height);
+> 206 |       (camera as THREE.OrthographicCamera).zoom = minDim < 600 ? 14 : minDim < 1024 ? 20 : 26;
+      |        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `camera` cannot be modified
+  207 |       camera.updateProjectionMatrix();
+  208 |     }
+  209 |   });  react-hooks/immutability
+
+D:\Projects\portfolio\app\components\Navigation.tsx
+   59:13  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+   61:17  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  121:13  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  123:17  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+D:\Projects\portfolio\app\components\SmoothScroll.tsx
+   9:5  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  22:9  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+D:\Projects\portfolio\app\page.tsx
+    3:28  warning  'useEffect' is defined but never used        @typescript-eslint/no-unused-vars
+    4:54  warning  'AnimatePresence' is defined but never used  @typescript-eslint/no-unused-vars
+  418:26  error    Unexpected any. Specify a different type     @typescript-eslint/no-explicit-any
+
+Γ£û 13 problems (9 errors, 4 warnings)
+
+ΓÇëELIFECYCLEΓÇë Command failed with exit code 1.

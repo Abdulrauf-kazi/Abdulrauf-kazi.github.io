@@ -102,13 +102,12 @@ function TopoTerrain() {
       z = Math.round(z * 2.5) / 2.5;
       elevations[i] = z;
       
-      // Zero out the actual Z position so the shader can handle it
       posAttr.setZ(i, 0);
     }
 
     geo.setAttribute("aElevation", new THREE.BufferAttribute(elevations, 1));
     return geo;
-  }, []);
+  }, [size, segments, fbm]);
 
   useFrame((state) => {
     if (materialRef.current) {
@@ -188,7 +187,8 @@ function CameraRig() {
 
   const lastViewport = useRef({ w: 0, h: 0 });
 
-  useFrame(() => {
+  useFrame((state) => {
+    const { camera, size: viewport } = state;
     target.current.x += (mouse.current.x - target.current.x) * 0.02;
     target.current.y += (mouse.current.y - target.current.y) * 0.02;
 

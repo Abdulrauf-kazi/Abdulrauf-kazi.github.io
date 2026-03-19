@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 
 if (typeof window !== "undefined") {
-    // @ts-ignore
+    // @ts-expect-error: window.lenis is not typed
     window.lenis = null;
 }
 
@@ -19,7 +19,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         });
 
-        // @ts-ignore
+        // @ts-expect-error: window.lenis is not typed
         window.lenis = lenis;
 
         lenis.on("scroll", ScrollTrigger.update);

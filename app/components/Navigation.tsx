@@ -56,9 +56,9 @@ function ScrambleButton({
             onNavigate(href);
         } else {
             const el = document.querySelector(href);
-            // @ts-ignore
+            // @ts-expect-error: window.lenis is not typed
             if (window.lenis) {
-                // @ts-ignore
+                // @ts-expect-error: window.lenis is not typed
                 window.lenis.scrollTo(el, { duration: 1.8 });
             } else if (el) {
                 el.scrollIntoView({ behavior: "smooth" });
@@ -118,9 +118,9 @@ export default function Navigation() {
         setOpen(false);
         const el = document.querySelector(href);
         if (el) {
-            // @ts-ignore
+            // @ts-expect-error: window.lenis is not typed
             if (window.lenis) {
-                // @ts-ignore
+                // @ts-expect-error: window.lenis is not typed
                 window.lenis.scrollTo(el, { duration: 1.8 });
             } else {
                 el.scrollIntoView({ behavior: "smooth" });

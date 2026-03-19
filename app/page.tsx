@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -415,7 +415,7 @@ export default function Home() {
               { icon: Github, href: "https://github.com/Abdulrauf-kazi", label: "GitHub" },
               { icon: Linkedin, href: "#", label: "LinkedIn" },
               { icon: MailIcon, href: "mailto:hello@example.com", label: "Email" },
-            ] as { icon: any; href: string; label: string }[]).map(({ icon: Icon, href, label }) => (
+            ] as { icon: React.ElementType; href: string; label: string }[]).map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
                 href={href}
