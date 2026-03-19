@@ -4,11 +4,9 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useMemo, useRef, useEffect } from "react";
 import * as THREE from "three";
 
-/* ─────────────────────────────────────────────────────────────────────── */
-/*  Topographic wireframe terrain – isometric, sage-green, architectural  */
-/* ─────────────────────────────────────────────────────────────────────── */
+/* ── Topographic wireframe terrain – GPU optimized  ───────────────────── */
 
-/** Simple 2D value-noise helper (no deps) */
+/** Simple 2D value-noise helper for CPU-side initial geometry */
 function hash(x: number, y: number) {
   let h = x * 374761393 + y * 668265263;
   h = ((h ^ (h >> 13)) * 1274126177) | 0;
@@ -46,66 +44,90 @@ function fbm(x: number, y: number, octaves = 5) {
   return v / max; // 0..1
 }
 
-/* ── The terrain mesh ─────────────────────────────────────────────────── */
+/* ── Shader ───────────────────────────────────────────────────────────── */
+
+const TopoShader = {
+  uniforms: {
+    uTime: { value: 0 },
+    uColor: { value: new THREE.Color("#2E2E2E") },
+    uOpacity: { value: 0.09 },
+  },
+  vertexShader: `
+    uniform float uTime;
+    attribute float aElevation;
+    varying float vElevation;
+
+    void main() {
+      vElevation = aElevation;
+      vec3 pos = position;
+
+      // Add wave animation on GPU
+      float wave = sin(pos.x * 0.06 + uTime) * cos(pos.y * 0.06 + uTime * 0.7) * 0.8;
+      pos.z += aElevation + wave;
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform vec3 uColor;
+    uniform float uOpacity;
+    varying float vElevation;
+
+    void main() {
+      // Subtle depth fade based on elevation if needed, but keeping it simple for brutalist look
+      gl_FragColor = vec4(uColor, uOpacity);
+    }
+  `,
+};
+
+/* ── Components ───────────────────────────────────────────────────────── */
+
 function TopoTerrain() {
   const meshRef = useRef<THREE.Mesh>(null);
-  const timeRef = useRef(0);
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
 
-  const { size, segments } = { size: 160, segments: 120 };
+  const { size, segments } = { size: 160, segments: 100 }; // Reduced segments slightly
 
-  /* Build geometry once */
-  const basePositions = useMemo(() => {
+  const geometry = useMemo(() => {
     const geo = new THREE.PlaneGeometry(size, size, segments, segments);
-    const verts = geo.attributes.position.array as Float32Array;
+    const count = geo.attributes.position.count;
+    const elevations = new Float32Array(count);
+    const posAttr = geo.attributes.position;
 
-    for (let i = 0; i < verts.length; i += 3) {
-      const x = verts[i];
-      const y = verts[i + 1];
+    for (let i = 0; i < count; i++) {
+      const x = posAttr.getX(i);
+      const y = posAttr.getY(i);
 
-      /* FBM noise → smooth organic hills */
       let z = fbm(x * 0.025 + 50, y * 0.025 + 50, 5) * 10 - 5;
-
-      /* Subtle contour-stepping for the topographic / architectural feel */
       z = Math.round(z * 2.5) / 2.5;
-
-      verts[i + 2] = z;
+      elevations[i] = z;
+      
+      // Zero out the actual Z position so the shader can handle it
+      posAttr.setZ(i, 0);
     }
 
-    geo.computeVertexNormals();
-    return { geo, verts: Float32Array.from(verts) }; // keep a copy
+    geo.setAttribute("aElevation", new THREE.BufferAttribute(elevations, 1));
+    return geo;
   }, []);
 
-  /* Gentle wave animation */
-  useFrame((_, delta) => {
-    if (!meshRef.current) return;
-    timeRef.current += delta * 0.15;
-    const geo = meshRef.current.geometry;
-    const pos = geo.attributes.position.array as Float32Array;
-    const base = basePositions.verts;
-    const t = timeRef.current;
-
-    for (let i = 0; i < pos.length; i += 3) {
-      const x = base[i];
-      const y = base[i + 1];
-      pos[i + 2] =
-        base[i + 2] +
-        Math.sin(x * 0.06 + t) * Math.cos(y * 0.06 + t * 0.7) * 0.8;
+  useFrame((state) => {
+    if (materialRef.current) {
+      materialRef.current.uniforms.uTime.value = state.clock.getElapsedTime() * 0.15;
     }
-    geo.attributes.position.needsUpdate = true;
   });
 
   return (
     <mesh
       ref={meshRef}
-      geometry={basePositions.geo}
+      geometry={geometry}
       rotation={[-Math.PI / 2.6, 0, Math.PI / 5]}
       position={[0, -8, 0]}
     >
-      <meshBasicMaterial
+      <shaderMaterial
+        ref={materialRef}
+        args={[TopoShader]}
         wireframe
-        color="#2E2E2E"
         transparent
-        opacity={0.09}
         depthWrite={false}
       />
     </mesh>
