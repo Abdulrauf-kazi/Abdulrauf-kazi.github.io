@@ -10,7 +10,7 @@ import Navigation from "./components/Navigation";
 import ScrollProgressBar from "./components/ScrollProgressBar";
 import Preloader from "./components/Preloader";
 import HeroVisual from "./components/HeroVisual";
-import { Github, Linkedin, Mail as MailIcon } from "lucide-react";
+import { Github, Linkedin, Mail as MailIcon, type LucideIcon } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -415,7 +415,7 @@ export default function Home() {
               { icon: Github, href: "https://github.com/Abdulrauf-kazi", label: "GitHub" },
               { icon: Linkedin, href: "#", label: "LinkedIn" },
               { icon: MailIcon, href: "mailto:hello@example.com", label: "Email" },
-            ] as { icon: React.ElementType; href: string; label: string }[]).map(({ icon: Icon, href, label }) => (
+            ] as { icon: LucideIcon; href: string; label: string }[]).map(({ icon: Icon, href, label }) => (
               <a
                 key={label}
                 href={href}
